@@ -4,16 +4,13 @@ import com.group51.beltline.models.User;
 import com.group51.beltline.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
 import java.util.List;
 
 @Controller
-@RequestMapping(path="/demo")
+@RequestMapping
 public class RESTController {
 
     @Autowired
@@ -27,11 +24,15 @@ public class RESTController {
         return userRepository.getAllUsers();
     }
 
-    @GetMapping(path = "/dave")
+    @GetMapping(path = "/users/{username}") // Map ONLY GET Requests
     public @ResponseBody
-    Collection<User> getDave() {
-        return userRepository.getDave();
+    User getOneUser(@PathVariable(value="username") String username){
+        return userRepository.getOneUser(username);
     }
+
+
+
+
 
 
 

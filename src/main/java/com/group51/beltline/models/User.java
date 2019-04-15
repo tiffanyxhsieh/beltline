@@ -21,23 +21,29 @@ public class User {
     @Column(name="Status")
     private boolean status;
 
+    @Column(name="Password")
+    private String password;
 
-    public User() {
-        username="";
-        firstName="";
-        lastName="";
-        status=false;
+
+    public User(String username, String email, String firstName, String lastName, boolean status) {
+        this.username ="";
+        this.firstName ="";
+        this.lastName ="";
+        password="";
+        this.status =false;
     }
+    public User() {}
 
     public User(String username,
                 String email,
                 String firstName,
                 String lastName,
+                String password,
                 boolean status) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;
-
+        this.password = password;
         this.status = status;
     }
 
@@ -72,5 +78,13 @@ public class User {
 
     public void setStatus(boolean status) {
         this.status = status;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
