@@ -12,9 +12,13 @@ public interface UserRepository extends JpaRepository<User, String> {
     @Query(value = "SELECT * FROM User", nativeQuery = true)
     Collection<User> getAllUsers();
 
-    //TODO:fix this b/c it doesn't recognize usernames w/ dots
     @Query(value = "SELECT * FROM User WHERE Username=:username", nativeQuery = true)
     User getOneUser(@Param("username") String username);
+
+
+    @Query(value = "SELECT * FROM User WHERE Username=?1 AND Password=?2", nativeQuery = true)
+    User checkLogin(@Param("username") String username, @Param("password") String password);
+
 
 
 

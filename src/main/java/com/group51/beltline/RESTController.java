@@ -33,6 +33,18 @@ public class RESTController {
         return userRepository.getOneUser(username);
     }
 
+    //Check login credentials
+    @PostMapping(path="/login")
+    public @ResponseBody
+    boolean checkLogin(@Param(value="username") String username, @Param(value="password") String password) {
+        if(userRepository.checkLogin(username, password) != null) {
+            return true;
+        }
+
+        return false;
+    }
+
+
 
 
 
