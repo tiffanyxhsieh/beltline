@@ -20,6 +20,7 @@ public interface UserRepository extends JpaRepository<User, String> {
     User checkLogin(@Param("username") String username, @Param("password") String password);
 
 
+    @Query()
 
 
 

@@ -19,18 +19,18 @@ public class User {
     private String lastName;
 
     @Column(name="Status")
-    private boolean status;
+    private String status;
 
     @Column(name="Password")
     private String password;
 
 
-    public User(String username, String email, String firstName, String lastName, boolean status) {
+    public User(String username, String email, String firstName, String lastName, String status) {
         this.username ="";
         this.firstName ="";
         this.lastName ="";
-        password="";
-        this.status =false;
+        this.password="";
+        this.status = "";
     }
     public User() {}
 
@@ -39,7 +39,7 @@ public class User {
                 String firstName,
                 String lastName,
                 String password,
-                boolean status) {
+                String status) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;
