@@ -3,6 +3,7 @@ package com.group51.beltline;
 import com.group51.beltline.models.User;
 import com.group51.beltline.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,7 +17,8 @@ public class RESTController {
     @Autowired
     private UserRepository userRepository;
 
-    @GetMapping(path = "/users") // Map ONLY GET Requests
+    //Get ALL users
+    @GetMapping(path = "/users")
     public @ResponseBody
     Collection<User> getUsers(){
         // @ResponseBody means the returned String is the response, not a view name
@@ -24,9 +26,10 @@ public class RESTController {
         return userRepository.getAllUsers();
     }
 
-    @GetMapping(path = "/users/{username}") // Map ONLY GET Requests
+    //Get a single user
+    @GetMapping(path = "/user") // Map ONLY GET Requests
     public @ResponseBody
-    User getOneUser(@PathVariable(value="username") String username){
+    User getOneUser(@Param(value="username") String username){
         return userRepository.getOneUser(username);
     }
 
