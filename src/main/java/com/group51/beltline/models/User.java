@@ -19,18 +19,21 @@ public class User {
     private String lastName;
 
     @Column(name="Status")
-    private String status;
+    private Status status;
 
     @Column(name="Password")
     private String password;
 
+    enum Status{
+        Approved, Declined, Pending;
+    };
 
-    public User(String username, String email, String firstName, String lastName, String status) {
+    public User(String username, String email, String firstName, String lastName, Status status) {
         this.username ="";
         this.firstName ="";
         this.lastName ="";
         this.password="";
-        this.status = "";
+        this.status = Status.Pending;
     }
     public User() {}
 
@@ -39,7 +42,7 @@ public class User {
                 String firstName,
                 String lastName,
                 String password,
-                String status) {
+                Status status) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;
@@ -72,11 +75,8 @@ public class User {
         this.lastName = lastName;
     }
 
-    public boolean isStatus() {
-        return status;
-    }
 
-    public void setStatus(boolean status) {
+    public void setStatus(Status status) {
         this.status = status;
     }
 

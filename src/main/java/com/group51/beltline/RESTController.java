@@ -7,6 +7,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.transaction.Transactional;
 import java.util.Collection;
 import java.util.List;
 
@@ -42,6 +43,14 @@ public class RESTController {
         }
 
         return false;
+    }
+
+
+    @Transactional
+    @PostMapping(path="/user")
+    public @ResponseBody
+    int createNewUser(@Param("firstName") String firstName, @Param("lastName") String lastName, @Param("username") String username, @Param("password") String password){
+        return userRepository.createNewUser(firstName, lastName, username, password);
     }
 
 

@@ -8,7 +8,7 @@ public class Employee extends User {
     private String state;
     private int zipcode;
 
-   public Employee(String username, String email, String firstName, String lastName, boolean status,
+   public Employee(String username, String email, String firstName, String lastName, Status status,
                    int employeeId,
             int phone,
             String address,
