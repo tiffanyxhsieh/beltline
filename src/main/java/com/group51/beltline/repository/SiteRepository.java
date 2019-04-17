@@ -1,6 +1,7 @@
 package com.group51.beltline.repository;
 
 import com.group51.beltline.models.Site;
+import com.group51.beltline.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -10,8 +11,11 @@ import java.util.Collection;
 
 public interface SiteRepository extends JpaRepository<Site, String> {
 
-    @Query(value = "SELECT Name FROM Site", nativeQuery = true)
+    @Query(value = "SELECT * FROM Site", nativeQuery = true)
     Collection<Site> getAllSites();
+
+    // @Query(value = "SELECT * FROM User", nativeQuery = true)
+    // Collection<User> getAllSites();
 
     // @Query(value = "SELECT * FROM User WHERE Username=:username", nativeQuery = true)
     // User getOneUser(@Param("username") String username);
