@@ -21,6 +21,15 @@ public class RESTController {
     private SiteRepository siteRepository;
     @Autowired
     private TransitRepository transitRepository;
+    @Autowired
+    private EventRepository eventRepository;
+
+    //Get ALL transit
+    @GetMapping(path = "/events")
+    public @ResponseBody
+    Collection<Event> getEvents(){
+        return eventRepository.getAllEvents();
+    }
 
     //Get ALL transit
     @GetMapping(path = "/transits")
