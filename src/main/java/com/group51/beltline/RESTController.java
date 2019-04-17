@@ -1,9 +1,7 @@
 package com.group51.beltline;
 
-import com.group51.beltline.models.User;
-import com.group51.beltline.models.Site;
-import com.group51.beltline.repository.UserRepository;
-import com.group51.beltline.repository.SiteRepository;
+import com.group51.beltline.models.*;
+import com.group51.beltline.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
@@ -21,12 +19,15 @@ public class RESTController {
     private UserRepository userRepository;
     @Autowired
     private SiteRepository siteRepository;
+    @Autowired
+    private TransitRepository transitRepository;
 
-    @GetMapping(path="/all")
-	public @ResponseBody Iterable<Site> getAllSites() {
-		// This returns a JSON or XML with the users
-		return siteRepository.findAll();
-	}
+    //Get ALL transit
+    @GetMapping(path = "/transits")
+    public @ResponseBody
+    Collection<Transit> getTransits(){
+        return transitRepository.getAllTransits();
+    }
 
     //Get ALL Site
     @GetMapping(path = "/sites")

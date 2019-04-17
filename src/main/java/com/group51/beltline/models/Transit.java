@@ -5,12 +5,12 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.Table;
-import com.group51.beltline.models.compositekey.TransitCompositeKey;
+// import com.group51.beltline.models.compositekey.TransitCompositeKey;
 
 
 @Entity
 @Table(name = "Transit")
-@IdClass(TransitCompositeKey.class)
+// @IdClass(TransitCompositeKey.class)
 public class Transit {
     
     @Column(name="Type")
