@@ -1,37 +1,27 @@
 package com.group51.beltline.models;
 
 import javax.persistence.Column;
+// import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.Table;
-// import com.group51.beltline.models.compositekey.TransitCompositeKey;
-
+import com.group51.beltline.models.compositekeys.TransitKey;;
 
 @Entity
 @Table(name = "Transit")
-// @IdClass(TransitCompositeKey.class)
+@IdClass(TransitKey.class)
 public class Transit {
-    
-    @Column(name="Type")
-    @Id private String type;
+    @Id
+    @Column(name="Type", nullable = false)
+    private String type;
 
-    // need to figure out how to do composite key
-    @Column(name="Route")
+    @Id
+    @Column(name="Route", nullable = false)
     private String route;
 
     @Column(name="Price")
     private Double price;
-
-    public Transit() {}
-
-    public Transit(String type,
-                String route,
-                Double price) {
-        this.type = type;
-        this.route = route;
-        this.price = price;
-    }
 
     public String getType() {
         return type;
