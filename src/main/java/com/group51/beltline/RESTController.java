@@ -31,6 +31,15 @@ public class RESTController {
     private VisitSiteRepository visitSiteRepository;
     @Autowired
     private VisitEventRepository visitEventRepository;
+    @Autowired
+    private AssignToRepository assignToRepository;
+
+    //Get ALL Assign_to
+    @GetMapping(path = "/assign_tos")
+    public @ResponseBody
+    Collection<AssignTo> getAssignTos(){
+        return assignToRepository.getAllAssignTos();
+    }
 
     //Get ALL visit_events
     @GetMapping(path = "/visit_events")
