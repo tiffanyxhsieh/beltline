@@ -27,6 +27,15 @@ public class RESTController {
     private ConnectRepository connectRepository;
     @Autowired
     private TakeRepository takeRepository;
+    @Autowired
+    private VisitSiteRepository visitSiteRepository;
+
+    //Get ALL takes
+    @GetMapping(path = "/visit_sites")
+    public @ResponseBody
+    Collection<Visit_Site> getVisitSites(){
+        return visitSiteRepository.getAllVisitSites();
+    }
 
     //Get ALL takes
     @GetMapping(path = "/takes")
