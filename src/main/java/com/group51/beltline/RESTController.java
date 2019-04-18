@@ -23,8 +23,24 @@ public class RESTController {
     private TransitRepository transitRepository;
     @Autowired
     private EventRepository eventRepository;
+    @Autowired
+    private ConnectRepository connectRepository;
+    @Autowired
+    private TakeRepository takeRepository;
 
-    //Get ALL transit
+    //Get ALL takes
+    @GetMapping(path = "/takes")
+    public @ResponseBody
+    Collection<Take> getTakes(){
+        return takeRepository.getAllTakes();
+    }
+    //Get ALL connects
+    @GetMapping(path = "/connects")
+    public @ResponseBody
+    Collection<Connect> getConnects(){
+        return connectRepository.getAllConnects();
+    }
+    //Get ALL events
     @GetMapping(path = "/events")
     public @ResponseBody
     Collection<Event> getEvents(){

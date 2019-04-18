@@ -6,7 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.Table;
-import com.group51.beltline.models.compositekeys.TransitKey;;
+import com.group51.beltline.models.compositekeys.TransitKey;
 
 @Entity
 @Table(name = "Transit")
