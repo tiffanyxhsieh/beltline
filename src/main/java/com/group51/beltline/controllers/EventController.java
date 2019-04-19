@@ -23,4 +23,45 @@ public class EventController {
     Collection<Event> getEvents(){
         return eventRepository.getAllEvents();
     }
+//   Name varchar(50) NOT NULL,
+//   StartDate date NOT NULL,
+//   SiteName varchar(50) NOT NULL,
+//   EndDate date NOT NULL,
+//   Price decimal(5,2) NOT NULL,
+//   Capacity int NOT NULL,
+//   MinStaffReq int NOT NULL DEFAULT '1',
+//   Description TEXT NOT NULL,
+
+    //Get events by name
+    @GetMapping(path = "/event") // Map ONLY GET Requests
+    public @ResponseBody
+    Event getEventByName(@Param(value="name") String name){
+        return eventRepository.getEventByName(name);
+    }
+
+    //create a event
+    // localhost:8080/event?name=Official Atlanta BeltLine Bike Tour&startDate=2019-02-09&siteName=Inman Park&endDate=2019-02-09&price=1&capacity=1&minStaffReq=1&description=1
+    @Transactional
+    @PostMapping(path="/event")
+    public @ResponseBody
+    int createNewEvent(@Param("Name") String name, @Param("StartDate") String startDate, @Param("SiteName") String siteName, @Param("EndDate") String endDate, @Param("Price") Double price, @Param("Capacity") Integer capacity, @Param("MinStaffReq") Integer minStaffReq, @Param("Description") String description){
+        return eventRepository.createNewEvent(name, startDate, siteName, endDate, price, capacity, minStaffReq, description);
+    }
+
+    //update a events
+    @Transactional
+    @PutMapping(path="/event")
+    public @ResponseBody
+    int putNewEvent(@Param("Name") String name, @Param("StartDate") String startDate, @Param("SiteName") String siteName, @Param("EndDate") String endDate, @Param("Price") Double price, @Param("Capacity") Integer capacity, @Param("MinStaffReq") Integer minStaffReq, @Param("Description") String description){
+        // return eventRepository.updateNewEventTest(name, startDate);
+        return eventRepository.updateNewEvent(name, startDate, siteName, endDate, price, capacity, minStaffReq, description);
+    }
+
+    //delete a events
+    @Transactional
+    @DeleteMapping(path="/event")
+    public @ResponseBody
+    int deleteEvent(@Param("Name") String name){
+        return eventRepository.deleteEvent(name);
+    }
 }
