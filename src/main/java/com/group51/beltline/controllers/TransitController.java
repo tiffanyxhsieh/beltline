@@ -23,4 +23,35 @@ public class TransitController {
     Collection<Transit> getTransits(){
         return transitRepository.getAllTransits();
     }
+
+    //Get transit by key
+    @GetMapping(path = "/transit") // Map ONLY GET Requests
+    public @ResponseBody
+    Transit getTransitByName(@Param("Type") String type, @Param("Route") String route){
+        return transitRepository.getTransitByKey(type, route);
+    }
+
+    //create a transit
+    @Transactional
+    @PostMapping(path="/transit")
+    public @ResponseBody
+    int createNewTransit(@Param("Type") String type, @Param("Route") String route, @Param("Price") Double price){
+        return transitRepository.createNewTransit(type, route, price);
+    }
+
+    //update a transit
+    @Transactional
+    @PutMapping(path="/transit")
+    public @ResponseBody
+    int putNewTransit(@Param("Type") String type, @Param("Route") String route, @Param("Price") Double price){
+        return transitRepository.updateNewTransit(type, route, price);
+    }
+
+    //delete a transit
+    @Transactional
+    @DeleteMapping(path="/transit")
+    public @ResponseBody
+    int deleteTransit(@Param("Type") String type, @Param("Route") String route){
+        return transitRepository.deleteTransit(type, route);
+    }
 }

@@ -13,16 +13,23 @@ public interface TransitRepository extends JpaRepository<Transit, String> {
     @Query(value = "SELECT * FROM Transit", nativeQuery = true)
     Collection<Transit> getAllTransits();
 
-    // @Query(value = "SELECT * FROM User WHERE Username=:username", nativeQuery = true)
-    // User getOneUser(@Param("username") String username);
+    // select Transit by name
+    @Query(value = "SELECT * FROM Transit WHERE Type=?1 AND Route=?2", nativeQuery = true)
+    Transit getTransitByKey(@Param("Type") String type, @Param("Route") String route);
 
+    //adds to "Transit" table
+    @Modifying //current default for Status is 'Pending'
+    @Query(value = "insert into Transit (Type, Route, Price) VALUES (?1,?2,?3)", nativeQuery = true)
+    int createNewTransit(@Param("Type") String type, @Param("Route") String route, @Param("Price") Double price);
 
-    // @Query(value = "SELECT * FROM User WHERE Username=?1 AND Password=?2 AND Status='Approved'", nativeQuery = true)
-    // User checkLogin(@Param("username") String username, @Param("password") String password);
+    //edit a "Transit"
+    @Modifying //current default for Status is 'Pending'
+    @Query(value = "update Transit set Type=?1, Route=?2, Price=?3 Where Type=?1 AND Route=?2", nativeQuery = true)
+    int updateNewTransit(@Param("Type") String type, @Param("Route") String route, @Param("Price") Double price);
 
-    // //adds to "User" table
-    // @Modifying //current default for Status is 'Pending'
-    // @Query(value = "insert into User (Firstname,Lastname, Username, Status, Password) VALUES (?1,?2,?3, 'Pending' ,?4)", nativeQuery = true)
-    // int createNewUser(@Param("firstName") String firstName, @Param("lastName") String lastName, @Param("username") String username, @Param("password") String password);
+    //delete a "Transit"
+    @Modifying //current default for Status is 'Pending'
+    @Query(value = "delete from Transit Where Type=?1 AND Route=?2", nativeQuery = true)
+    int deleteTransit(@Param("Type") String type, @Param("Route") String route);
 
 }
