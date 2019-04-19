@@ -14,19 +14,23 @@ public interface SiteRepository extends JpaRepository<Site, String> {
     @Query(value = "SELECT * FROM Site", nativeQuery = true)
     Collection<Site> getAllSites();
 
-    // @Query(value = "SELECT * FROM User", nativeQuery = true)
-    // Collection<User> getAllSites();
+    // select site by name
+    @Query(value = "SELECT * FROM Site WHERE Name=:name", nativeQuery = true)
+    Site getUserByName(@Param("name") String name);
 
-    // @Query(value = "SELECT * FROM User WHERE Username=:username", nativeQuery = true)
-    // User getOneUser(@Param("username") String username);
+    //adds to "Site" table
+    @Modifying //current default for Status is 'Pending'
+    @Query(value = "insert into Site (Name, Zipcode, Address, OpenEveryday, Manager) VALUES (?1,?2,?3, ?4, ?5)", nativeQuery = true)
+    int createNewSite(@Param("Name") String Name, @Param("Zipcode") String zipcode, @Param("Address") String address, @Param("OpenEveryday") String openEveryday, @Param("Manager") String manager);
 
+    //edit a "Site"
+    @Modifying //current default for Status is 'Pending'
+    @Query(value = "update Site set Name=?1, Zipcode=?2, Address=?3, OpenEveryday=?4, Manager=?5 Where Name=?1", nativeQuery = true)
+    int updateNewSite(@Param("Name") String Name, @Param("Zipcode") String zipcode, @Param("Address") String address, @Param("OpenEveryday") String openEveryday, @Param("Manager") String manager);
 
-    // @Query(value = "SELECT * FROM User WHERE Username=?1 AND Password=?2 AND Status='Approved'", nativeQuery = true)
-    // User checkLogin(@Param("username") String username, @Param("password") String password);
-
-    // //adds to "User" table
-    // @Modifying //current default for Status is 'Pending'
-    // @Query(value = "insert into User (Firstname,Lastname, Username, Status, Password) VALUES (?1,?2,?3, 'Pending' ,?4)", nativeQuery = true)
-    // int createNewUser(@Param("firstName") String firstName, @Param("lastName") String lastName, @Param("username") String username, @Param("password") String password);
+    //delete a "Site"
+    @Modifying //current default for Status is 'Pending'
+    @Query(value = "delete from Site Where Name=?1", nativeQuery = true)
+    int deleteSite(@Param("Name") String Name);
 
 }
