@@ -35,16 +35,16 @@ public class SiteController {
     @Transactional
     @PostMapping(path="/site")
     public @ResponseBody
-    int createNewsite(@Param("Name") String name, @Param("Zipcode") String zipcode, @Param("Address") String address, @Param("OpenEveryday") String openEveryday, @Param("Manager") String manager){
-        return siteRepository.createNewSite(name, zipcode, address, openEveryday, manager);
+    int createNewsite(@Param("Name") String name, @Param("Zipcode") String zipcode, @Param("Address") String address, @Param("OpenEveryday") String openeveryday, @Param("Manager") String manager){
+        return siteRepository.createNewSite(name, zipcode, address, openeveryday, manager);
     }
 
     //update a site
     @Transactional
     @PutMapping(path="/site")
     public @ResponseBody
-    int putNewsite(@Param("Name") String name, @Param("Zipcode") String zipcode, @Param("Address") String address, @Param("OpenEveryday") String openEveryday, @Param("Manager") String manager){
-        return siteRepository.updateNewSite(name, zipcode, address, openEveryday, manager);
+    int putNewsite(@Param("Name") String name, @Param("Zipcode") String zipcode, @Param("Address") String address, @Param("OpenEveryday") String openeveryday, @Param("Manager") String manager){
+        return siteRepository.updateNewSite(name, zipcode, address, openeveryday, manager);
     }
 
     //delete a site

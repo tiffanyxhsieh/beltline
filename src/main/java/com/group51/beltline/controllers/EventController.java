@@ -44,17 +44,17 @@ public class EventController {
     @Transactional
     @PostMapping(path="/event")
     public @ResponseBody
-    int createNewEvent(@Param("Name") String name, @Param("StartDate") String startDate, @Param("SiteName") String siteName, @Param("EndDate") String endDate, @Param("Price") Double price, @Param("Capacity") Integer capacity, @Param("MinStaffReq") Integer minStaffReq, @Param("Description") String description){
-        return eventRepository.createNewEvent(name, startDate, siteName, endDate, price, capacity, minStaffReq, description);
+    int createNewEvent(@Param("Name") String name, @Param("StartDate") String startdate, @Param("SiteName") String sitename, @Param("EndDate") String enddate, @Param("Price") Double price, @Param("Capacity") Integer capacity, @Param("MinStaffReq") Integer minstaffreq, @Param("Description") String description){
+        return eventRepository.createNewEvent(name, startdate, sitename, enddate, price, capacity, minstaffreq, description);
     }
 
     //update a events
     @Transactional
     @PutMapping(path="/event")
     public @ResponseBody
-    int putNewEvent(@Param("Name") String name, @Param("StartDate") String startDate, @Param("SiteName") String siteName, @Param("EndDate") String endDate, @Param("Price") Double price, @Param("Capacity") Integer capacity, @Param("MinStaffReq") Integer minStaffReq, @Param("Description") String description){
+    int putNewEvent(@Param("Name") String name, @Param("StartDate") String startdate, @Param("SiteName") String sitename, @Param("EndDate") String enddate, @Param("Price") Double price, @Param("Capacity") Integer capacity, @Param("MinStaffReq") Integer minstaffreq, @Param("Description") String description){
         // return eventRepository.updateNewEventTest(name, startDate);
-        return eventRepository.updateNewEvent(name, startDate, siteName, endDate, price, capacity, minStaffReq, description);
+        return eventRepository.updateNewEvent(name, startdate, sitename, enddate, price, capacity, minstaffreq, description);
     }
 
     //delete a events
