@@ -27,5 +27,13 @@ public class VisitEventController {
     Collection<Visit_Event> getVisitEvents(){
         return visitEventRepository.getAllVisitEvents();
     }
+
+    //create a event
+    @Transactional
+    @PostMapping(path="/visit_event")
+    public @ResponseBody
+    int createNewVisitEvent(@Param("Username") String username, @Param("Name") String name, @Param("StartDate") String startdate, @Param("SiteName") String sitename, @Param("Date") String date){
+        return visitEventRepository.createNewVisitEvent(username, name, startdate, sitename, date);
+    }
     
 }
