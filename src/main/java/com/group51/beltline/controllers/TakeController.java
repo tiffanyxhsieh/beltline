@@ -24,5 +24,14 @@ public class TakeController {
     Collection<Take> getTakes(){
         return takeRepository.getAllTakes();
     }
+
+    //create a site
+    @Transactional
+    @PostMapping(path="/take")
+    public @ResponseBody
+    int createNewTake(@Param("username") String username, @Param("type") String type, @Param("route") String route, @Param("date") String date){
+        // variables must be in lowwer case
+        return takeRepository.createNewTake(username, type, route, date);
+    }
     
 }

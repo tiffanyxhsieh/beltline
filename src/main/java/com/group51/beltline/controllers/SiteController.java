@@ -27,8 +27,8 @@ public class SiteController {
     //Get site by name
     @GetMapping(path = "/site") // Map ONLY GET Requests
     public @ResponseBody
-    Site getUserByName(@Param(value="name") String name){
-        return siteRepository.getUserByName(name);
+    Site getSiteByName(@Param(value="name") String name){
+        return siteRepository.getSiteByName(name);
     }
 
     //create a site

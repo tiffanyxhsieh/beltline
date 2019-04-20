@@ -16,7 +16,7 @@ public interface SiteRepository extends JpaRepository<Site, String> {
 
     // select site by name
     @Query(value = "SELECT * FROM Site WHERE Name=:name", nativeQuery = true)
-    Site getUserByName(@Param("name") String name);
+    Site getSiteByName(@Param("name") String name);
 
     //adds to "Site" table
     @Modifying //current default for Status is 'Pending'
