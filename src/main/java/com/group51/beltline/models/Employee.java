@@ -1,30 +1,58 @@
 package com.group51.beltline.models;
 
-public class Employee extends User {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="Employee")
+public class Employee{
+
+
+    @Id
+    @Column(name="Username")
+    private String username;
+
+    @Column(name="EmployeeID")
     private int employeeId;//unique 9-digit
-    private int phone;
+
+    @Column(name="Phone")
+    private long phone;
+
+    @Column(name="Address")
     private String address;
+
+    @Column(name="City")
     private String city;
+
+    @Column(name="State")
     private String state;
+
+    @Column(name="Zipcode")
     private int zipcode;
 
-   public Employee(String username, String email, String firstName, String lastName, Status status,
-                   int employeeId,
-            int phone,
+    public Employee(){}
+
+   public Employee(String username,
+            int employeeId,
+            long phone,
             String address,
             String city,
             String state,
             int zipcode) {
-       super(username, email, firstName, lastName, status);
+       this.username = username;
        this.employeeId = employeeId;
        this.phone = phone;
        this.address = address;
        this.city = city;
        this.state = state;
        this.zipcode = zipcode;
+
+
    }
 
-    public int getPhone() {
+    public long getPhone() {
         return phone;
     }
 

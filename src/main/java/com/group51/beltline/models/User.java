@@ -1,48 +1,42 @@
 package com.group51.beltline.models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "User")
 public class User {
     @Id
-    @Column(name="Username")
+    @Column(table="User", name="Username")
     private String username;
 
-    @Column(name="Firstname")
+    @Column(table="User", name="Firstname")
     private String firstName;
 
-    @Column(name="Lastname")
+    @Column(table="User", name="Lastname")
     private String lastName;
 
-    @Column(name="Status")
-    private Status status;
+    @Column(table="User", name="Status")
+    private String status;
 
-    @Column(name="Password")
+    @Column(table="User", name="Password")
     private String password;
 
-    enum Status{
-        Approved, Declined, Pending;
-    };
 
-    public User(String username, String email, String firstName, String lastName, Status status) {
+
+    public User(String username, String firstName, String lastName, String status) {
         this.username ="";
         this.firstName ="";
         this.lastName ="";
         this.password="";
-        this.status = Status.Pending;
+        this.status = "Pending";
     }
     public User() {}
 
     public User(String username,
-                String email,
                 String firstName,
                 String lastName,
                 String password,
-                Status status) {
+                String status) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;
@@ -76,7 +70,7 @@ public class User {
     }
 
 
-    public void setStatus(Status status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
