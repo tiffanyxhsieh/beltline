@@ -23,6 +23,8 @@ public class RESTController {
     @Autowired
     private EmployeeRepository employeeRepository;
     @Autowired
+    private VisitorRepository visitorRepository;
+    @Autowired
     private ManagerRepository managerRepository;
 
 
@@ -46,12 +48,12 @@ public class RESTController {
 
 
 
-//
-//    @GetMapping(path="/visitors")
-//    public @ResponseBody
-//    Collection<Visitor> getAllVisitors(){
-//        return visitorRepository.getAllVisitors();
-//    }
+    //get all visitors
+    @GetMapping(path="/visitors")
+    public @ResponseBody
+    Collection<Visitor> getAllVisitors(){
+        return visitorRepository.getAllVisitors();
+    }
 
 
 
