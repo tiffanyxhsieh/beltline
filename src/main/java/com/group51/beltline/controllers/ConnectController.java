@@ -24,5 +24,14 @@ public class ConnectController {
     Collection<Connect> getConnects(){
         return connectRepository.getAllConnects();
     }
+
+    //create a connect
+    @Transactional
+    @PostMapping(path="/connect")
+    public @ResponseBody
+    int createNewTake(@Param("SiteName") String sitename, @Param("Type") String type, @Param("Route") String route){
+        // parameters' characters are in lowwer case
+        return connectRepository.createNewConnect(sitename, type, route);
+    }
     
 }
