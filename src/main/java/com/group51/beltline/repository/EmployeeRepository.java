@@ -18,7 +18,7 @@ public interface EmployeeRepository extends JpaRepository<Employee, String> {
     @Query(value="insert into Employee (Username,EmployeeID, Phone, Address, City, State, Zipcode) VALUES (?1,?2,?3,?4,?5,?6,?7)", nativeQuery = true)
     int createNewEmployee(@Param("username") String username,
                           @Param("employeeId") int employeeid,
-                          @Param("phone") int phone,
+                          @Param("phone") long phone,
                           @Param("address") String address,
                           @Param("city") String city,
                           @Param("state") String state,

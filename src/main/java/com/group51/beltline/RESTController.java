@@ -16,7 +16,7 @@ import java.util.Collection;
 @RequestMapping
 public class RESTController {
 
-    static int employeeId = 20;
+    static int employeeId = 21;
 
     @Autowired
     private UserRepository userRepository;
@@ -129,11 +129,22 @@ public class RESTController {
         return false;
     }
 
-
+    //register one user
     @Transactional
     @PostMapping(path="/user")
     public @ResponseBody
-    int createNewUser(@RequestParam("firstName") String firstName, @RequestParam("lastName") String lastName, @RequestParam("username") String username, @RequestParam("password") String password){
+    int createNewUser(@RequestHeader("firstName") String firstName,
+                      @RequestHeader("lastName") String lastName,
+                      @RequestHeader("username") String username,
+                      @RequestHeader("password") String password){
+        return userRepository.createNewUser(firstName, lastName, username, password);
+    }
+
+
+    @Transactional
+    @PatchMapping(path="/user")
+    public @ResponseBody
+    int updateUser(@RequestParam("firstName") String firstName, @RequestParam("lastName") String lastName, @RequestParam("username") String username, @RequestParam("password") String password){
         return userRepository.createNewUser(firstName, lastName, username, password);
     }
 
@@ -145,6 +156,14 @@ public class RESTController {
         return emailRepository.getAllEmails();
 
     }
+
+    @Transactional
+    @PostMapping(path="/emails")
+    public @ResponseBody
+    int addNewEmail(@RequestHeader("username") String username, @RequestHeader("email") String email){
+        return emailRepository.addNewEmail(username, email);
+    }
+
 
     //gets all the Emails associated w/ a user
     @GetMapping(path="/userEmails")
@@ -161,19 +180,27 @@ public class RESTController {
         return employeeRepository.getAllEmployees();
     }
 
+    //registers USER and EMPLOYEE
     @Transactional
-    @PostMapping(path="/employees")
+    @PostMapping(path="/registerEmployee")
     public @ResponseBody
-    int createNewEmployee(@RequestHeader("username") String username,
-                          @RequestHeader("phone") int phone,
+    int createNewEmployee(@RequestHeader("firstName") String firstName,
+                          @RequestHeader("lastName") String lastName,
+                          @RequestHeader("username") String username,
+                          @RequestHeader("password") String password,
+                          @RequestHeader("phone") long phone,
                           @RequestHeader("address") String address,
                           @RequestHeader("city") String city,
                           @RequestHeader("state") String state,
                           @RequestHeader("zipcode") int zipcode
-                          ) {
 
+    ) {
+        userRepository.createNewUser(firstName, lastName, username, password);
+        employeeId++;
         return employeeRepository
                 .createNewEmployee(username, employeeId, phone, address, city, state, zipcode);
+
+
     }
 
     //get all administrators
@@ -204,6 +231,16 @@ public class RESTController {
     Collection<Visitor> getAllVisitors(){
         return visitorRepository.getAllVisitors();
     }
+
+    //register a visitor
+    @Transactional
+    @PostMapping(path="/registerVisitor")
+    public @ResponseBody
+    int createNewVisitor(@RequestHeader("username") String username){
+        return visitorRepository.createNewVisitor(username);
+    }
+
+
 
 
 
