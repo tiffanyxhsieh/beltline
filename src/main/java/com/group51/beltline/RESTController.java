@@ -3,20 +3,33 @@ package com.group51.beltline;
 import com.group51.beltline.models.*;
 import com.group51.beltline.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
 import java.util.Collection;
-import java.util.List;
 
+@ComponentScan
 @Controller
 @RequestMapping
 public class RESTController {
 
+    static int employeeId = 20;
+
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private AdministratorRepository administratorRepository;
+    @Autowired
+    private EmployeeRepository employeeRepository;
+    @Autowired
+    private ManagerRepository managerRepository;
+    @Autowired
+    private StaffRepository staffRepository;
+    @Autowired
+    private EmailRepository emailRepository;
     @Autowired
     private SiteRepository siteRepository;
     @Autowired
@@ -104,9 +117,9 @@ public class RESTController {
     }
 
     //Check login credentials
-    @PostMapping(path="/login")
+    @GetMapping(path="/login")
     public @ResponseBody
-    boolean checkLogin(@Param(value="username") String username, @Param(value="password") String password) {
+    boolean checkLogin(@RequestHeader(value="username") String username, @RequestHeader(value="password") String password) {
         if(userRepository.checkLogin(username, password) != null) {
             return true;
         }
@@ -118,13 +131,77 @@ public class RESTController {
     @Transactional
     @PostMapping(path="/user")
     public @ResponseBody
-    int createNewUser(@Param("firstName") String firstName, @Param("lastName") String lastName, @Param("username") String username, @Param("password") String password){
+    int createNewUser(@RequestParam("firstName") String firstName, @RequestParam("lastName") String lastName, @RequestParam("username") String username, @RequestParam("password") String password){
         return userRepository.createNewUser(firstName, lastName, username, password);
     }
 
 
+    //returns All Emails
+    @GetMapping(path="/emails")
+    public @ResponseBody
+    Collection<Email> getAllEmail(){
+        return emailRepository.getAllEmails();
+
+    }
+
+    //gets all the Emails associated w/ a user
+    @GetMapping(path="/userEmails")
+    public @ResponseBody
+    Collection<Email> getAllUserEmails(@RequestParam("username")String username){
+        return emailRepository.getAllUserEmails(username);
+
+    }
+
+    //gets all employee usernames
+    @GetMapping(path="/employees")
+    public @ResponseBody
+    Collection<Employee> getAllEmployees() {
+        return employeeRepository.getAllEmployees();
+    }
+
+    @Transactional
+    @PostMapping(path="/employees")
+    public @ResponseBody
+    int createNewEmployee(@RequestHeader("username") String username,
+                          @RequestHeader("phone") int phone,
+                          @RequestHeader("address") String address,
+                          @RequestHeader("city") String city,
+                          @RequestHeader("state") String state,
+                          @RequestHeader("zipcode") int zipcode
+                          ) {
+
+        return employeeRepository
+                .createNewEmployee(username, employeeId, phone, address, city, state, zipcode);
+    }
+
+    //get all administrators
+    @GetMapping(path="/administrators")
+    public @ResponseBody
+    Collection<Administrator> getAllAdministrators(){
+        return administratorRepository.getAllAdministrators();
+    }
+
+    //get all managers
+    @GetMapping(path="/managers")
+    public @ResponseBody
+    Collection<Manager> getAllManagers(){
+        return managerRepository.getAllManagers();
+    }
+
+    //get all staff
+    @GetMapping(path="/staff")
+    public @ResponseBody
+    Collection<Staff> getAllStaff(){
+        return staffRepository.getAllStaff();
+    }
 
 
+//
+//    @GetMapping(path="/visitors")
+//    public @ResponseBody
+//    Collection<Visitor> getAllVisitors(){
+//        return visitorRepository.getAllVisitors();
+//    }
 
 
 
