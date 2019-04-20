@@ -25,4 +25,12 @@ public class VisitSiteController {
         return visitSiteRepository.getAllVisitSites();
     }
 
+    //create a site
+    @Transactional
+    @PostMapping(path="/visit_site")
+    public @ResponseBody
+    int createNewVistSite(@Param("Username") String username, @Param("SiteName") String sitename, @Param("Date") String date){
+        return visitSiteRepository.createNewVisitSite(username, sitename, date);
+    }
+
 }
