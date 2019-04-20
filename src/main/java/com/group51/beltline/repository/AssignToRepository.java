@@ -13,4 +13,10 @@ public interface AssignToRepository extends JpaRepository<AssignTo, String> {
 
     @Query(value = "SELECT * FROM Assign_to", nativeQuery = true)
     Collection<AssignTo> getAllAssignTos();
+
+    //adds to "Take" table
+    @Modifying //current default for Status is 'Pending'
+    @Query(value = "insert into Assign_to (Username, Name, StartDate, SiteName) VALUES (?1,?2,?3,?4)", nativeQuery = true)
+    int createNewAssignTo(@Param("Username") String Username, @Param("Name") String Name, @Param("StartDate") String StartDate, @Param("SiteName") String SiteName);
+
 }
