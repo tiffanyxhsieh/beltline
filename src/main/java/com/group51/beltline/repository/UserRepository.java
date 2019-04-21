@@ -9,9 +9,9 @@ import org.springframework.data.repository.query.Param;
 import java.util.Collection;
 
 public interface UserRepository extends JpaRepository<User, String> {
-
+//SELECT User.Username, User.Firstname, User.Lastname, User.Password,
     @Query(value = "SELECT * FROM User", nativeQuery = true)
-    Collection<User> getAllUsers();
+    Collection<User> getAll();
 
     @Query(value = "SELECT * FROM User WHERE Username=:username", nativeQuery = true)
     User getOneUser(@Param("username") String username);
@@ -27,7 +27,13 @@ public interface UserRepository extends JpaRepository<User, String> {
     int createNewUser(@Param("firstName") String firstName, @Param("lastName") String lastName, @Param("username") String username, @Param("password") String password);
 
 
+    @Modifying
+    @Query(value = "UPDATE User SET status = 'Approved' WHERE username = $username")
+    int approveUser(@Param("username")String username);
 
 
+    @Modifying
+    @Query(value = "UPDATE User SET status = 'Declined' WHERE username = $username")
+    int declineUser(@Param("username")String username);
 
 }

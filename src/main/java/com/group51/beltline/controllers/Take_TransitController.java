@@ -3,6 +3,7 @@ package com.group51.beltline.controllers;
 import com.group51.beltline.models.DTO.take_transit;
 import com.group51.beltline.repository.Take_TransitRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -20,21 +21,14 @@ public class Take_TransitController {
 
 
     //TODO:FRONT END...must make default values
-    @GetMapping(path="/screen16/filter")
+    @GetMapping(path="/screen15/filter")
     public @ResponseBody
     Collection<take_transit> getAlltake_transit(
-                                                @RequestHeader(value="type") String type,
-                                                @RequestHeader(value="route") String route,
-                                                @RequestHeader(value="start") String start,
-                                                @RequestHeader(value="end") String end){
-
-        if(start == null || start.isEmpty()) {
-            start = "1000-01-01";
-        }
-
-        if (end == null || end.isEmpty()) {
-            end = "3000-01-01";
-        }
-        return take_transitRepository.gettake_transitBy(type,route, start, end);
+                                                @Param(value="site") String site,
+                                                @Param(value="type") String type,
+                                                @Param(value="low") String low,
+                                                @Param(value="high") String high){
+        //TODO: FRONT END.....if low is empty, put "0", if high is empty, put "99999
+        return take_transitRepository.filterTake_transitBy(site, type, low, high);
     }
 }

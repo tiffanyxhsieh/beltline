@@ -9,19 +9,24 @@ import org.springframework.data.repository.query.Param;
 import java.util.Collection;
 
 public interface Take_TransitRepository extends JpaRepository<take_transit, String> {
-    //TODO: different queries for when type, route, date are empty
+    //TODO: Fix Like Query....still only doing exact match
 
-    @Query(value ="SELECT * FROM take_transit " +
-            "where (?1 IS NULL OR type=?1) " +
-            "AND (?2 IS NULL OR route=?2) " +
-            "AND date BETWEEN ?3 and ?4 "
+    @Query(value ="	select transit.route , transit.type, price, count(*) " +
+            "from transit join connect on transit.type = connect.type and transit.route = connect.route " +
+            "group by type, route "+
+            "having transit.route in (select route "+
+            "from connect "+
+            "where sitename = ?1) "+
+            "and transit.type in (select type "+
+            "from transit "+
+            "where type like ?2% and price between ?3 and ?4 )"
             ,
              nativeQuery = true)
-    Collection<take_transit> gettake_transitBy(
-                                                @Param("type")String type,
-                                                @Param("route") String route,
-                                                @Param("start") String start,
-                                                @Param("end") String end);
+    Collection<take_transit> filterTake_transitBy(
+                                                @Param("site")String site,
+                                                @Param("type") String type,
+                                                @Param("low") String low,
+                                                @Param("high") String high);
 
 
 }

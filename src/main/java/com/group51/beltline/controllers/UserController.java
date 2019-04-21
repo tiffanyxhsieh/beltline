@@ -21,7 +21,7 @@ public class UserController {
     Collection<User> getUsers(){
         // @ResponseBody means the returned String is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
-        return userRepository.getAllUsers();
+        return userRepository.getAll();
     }
 
     //Get a single user
@@ -40,6 +40,20 @@ public class UserController {
     public @ResponseBody
     int createNewUser(@RequestParam("firstName") String firstName, @RequestParam("lastName") String lastName, @RequestParam("username") String username, @RequestParam("password") String password){
         return userRepository.createNewUser(firstName, lastName, username, password);
+    }
+
+    @Transactional
+    @PutMapping(path="/screen18/approve")
+    public @ResponseBody
+    int approveUser(@RequestHeader("username") String username){
+        return userRepository.approveUser(username);
+    }
+
+    @Transactional
+    @PutMapping(path="/screen18/decline")
+    public @ResponseBody
+    int declineUser(@RequestHeader("username") String username){
+        return userRepository.declineUser(username);
     }
 
 }

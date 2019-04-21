@@ -23,28 +23,17 @@ public class User {
 
 
 
-    public User(String username, String firstName, String lastName, String status) {
+    public User(String username, String firstName, String lastName, String password, String status) {
         this.username ="";
         this.firstName ="";
         this.lastName ="";
         this.password="";
-        this.status = "Pending";
+        this.status = "";
     }
     public User() {
-        this.status="Pending";
+        this.status="";
     }
 
-    public User(String username,
-                String firstName,
-                String lastName,
-                String password,
-                String status) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.username = username;
-        this.password = password;
-        this.status = status;
-    }
 
     public String getUsername() {
         return username;
@@ -82,5 +71,9 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getStatus() {
+        return status;
     }
 }
