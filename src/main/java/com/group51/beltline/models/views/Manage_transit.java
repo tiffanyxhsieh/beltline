@@ -1,4 +1,4 @@
-package com.group51.beltline.models.DTO;
+package com.group51.beltline.models.views;
 
 import com.group51.beltline.models.compositekeys.manage_transitKey;
 
