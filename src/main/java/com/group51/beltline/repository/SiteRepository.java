@@ -14,6 +14,18 @@ public interface SiteRepository extends JpaRepository<Site, String> {
     @Query(value = "SELECT * FROM Site", nativeQuery = true)
     Collection<Site> getAllSites();
 
+    // filtering a site
+    @Query(value = 
+            "SELECT * FROM Site where (?1 IS NULL OR Name=?1) AND (?2 IS NULL OR Zipcode=?2) AND (?3 IS NULL OR Address=?3) AND (?4 IS NULL OR OpenEveryday=?4) AND (?5 IS NULL OR Manager=?5)"
+            // "SELECT * FROM Site" + 
+            // "where (?1 IS NULL OR Name = ?1)\n" +
+            // "AND (?2 IS NULL OR Zipcode =?2)\n" +
+            // "AND (?3 IS NULL OR Address =?3)\n" +
+            // "AND (?4 IS NULL OR OpenEveryday =?4)\n" +
+            // "AND (?5 IS NULL OR Manager=?5)"
+            ,nativeQuery = true)
+    Collection<Site> filter(@Param("Name") String Name, @Param("Zipcode") String zipcode, @Param("Address") String address, @Param("OpenEveryday") String openEveryday, @Param("Manager") String manager);
+
     // select site by name
     @Query(value = "SELECT * FROM Site WHERE Name=:name", nativeQuery = true)
     Site getSiteByName(@Param("name") String name);
