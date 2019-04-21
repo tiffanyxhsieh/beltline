@@ -1,6 +1,7 @@
 package com.group51.beltline;
 
 import com.group51.beltline.models.*;
+import com.group51.beltline.models.DTO.take_transit;
 import com.group51.beltline.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
@@ -19,13 +20,14 @@ public class RESTController {
 
     @Autowired
     private UserRepository userRepository;
-
     @Autowired
     private EmployeeRepository employeeRepository;
     @Autowired
     private VisitorRepository visitorRepository;
     @Autowired
     private ManagerRepository managerRepository;
+    @Autowired
+    private Take_TransitRepository take_transitRepository;
 
 
 
@@ -41,7 +43,11 @@ public class RESTController {
         return false;
     }
 
+    @GetMapping(path="/manageUser")
+    public @ResponseBody
+    void showManageUserPage() {
 
+    }
 
 
 
@@ -54,7 +60,6 @@ public class RESTController {
     Collection<Visitor> getAllVisitors(){
         return visitorRepository.getAllVisitors();
     }
-
 
 
 
