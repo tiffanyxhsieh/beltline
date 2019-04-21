@@ -17,6 +17,11 @@ public interface EventRepository extends JpaRepository<Event, String> {
     @Query(value = "SELECT * FROM Event WHERE Name=?1", nativeQuery = true)
     Event getEventByName(@Param("name") String name);
 
+    // select site by key
+     //SiteName, StartDate, Name
+    @Query(value = "SELECT * FROM Event WHERE Name=?1 AND StartDate=?2 AND SiteName=?3", nativeQuery = true)
+    Event getEventByKey(@Param("name") String name, @Param("StartDate") String startdate, @Param("SiteName") String sitename);
+
     //adds to "Site" table
     @Modifying //current default for Status is 'Pending'
     @Query(value = "insert into Event (Name, StartDate, SiteName, EndDate, Price, Capacity, MinStaffReq, Description) VALUES (?1,?2,?3, ?4,?5, ?6, ?7, ?8)", nativeQuery = true)

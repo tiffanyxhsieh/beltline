@@ -53,10 +53,18 @@ public class Screen25Controller {
     }
 
     // delete a event
-     @Transactional
-     @DeleteMapping(path="/screen25/deleteEvent")
-     public @ResponseBody
-     int deleteEvent(@Param("Name") String name){
-         return eventRepository.deleteEvent(name);
-     }
+    @Transactional
+    @DeleteMapping(path="/screen25/deleteEvent")
+    public @ResponseBody
+    int deleteEvent(@Param("Name") String name){
+        return eventRepository.deleteEvent(name);
+    }
+
+     // select a event by key
+     //SiteName, StartDate, Name
+    @GetMapping(path = "/screen25/selectEventByKey") // Map ONLY GET Requests
+    public @ResponseBody
+    Event getEventByName(@Param("name") String name, @Param("StartDate") String startdate, @Param("SiteName") String sitename){
+        return eventRepository.getEventByKey(name, startdate, sitename);
+    }
 }
