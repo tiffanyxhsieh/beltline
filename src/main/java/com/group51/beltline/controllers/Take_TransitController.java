@@ -27,6 +27,14 @@ public class Take_TransitController {
                                                 @RequestHeader(value="route") String route,
                                                 @RequestHeader(value="start") String start,
                                                 @RequestHeader(value="end") String end){
+
+        if(start == null || start.isEmpty()) {
+            start = "1000-01-01";
+        }
+
+        if (end == null || end.isEmpty()) {
+            end = "3000-01-01";
+        }
         return take_transitRepository.gettake_transitBy(type,route, start, end);
     }
 }

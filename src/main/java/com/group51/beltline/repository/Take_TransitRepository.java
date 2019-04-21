@@ -11,10 +11,11 @@ import java.util.Collection;
 public interface Take_TransitRepository extends JpaRepository<take_transit, String> {
     //TODO: different queries for when type, route, date are empty
 
-    @Query(value = "SELECT * FROM take_transit " +
-            "(WHERE type=?1 or type IS NOT NULL) AND " +
-            "(WHERE route=?2 or  route IS NOT NULL) AND " +
-            "date between ?3 and ?4",
+    @Query(value ="SELECT * FROM take_transit " +
+            "where (?1 IS NULL OR type=?1) " +
+            "AND (?2 IS NULL OR route=?2) " +
+            "AND date BETWEEN ?3 and ?4 "
+            ,
              nativeQuery = true)
     Collection<take_transit> gettake_transitBy(
                                                 @Param("type")String type,
