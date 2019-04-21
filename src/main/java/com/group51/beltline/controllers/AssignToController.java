@@ -25,13 +25,13 @@ public class AssignToController {
         return assignToRepository.getAllAssignTos();
     }
 
-       //create a connect
-       @Transactional
-       @PostMapping(path="/assign_to")
-       public @ResponseBody
-       int createNewTake(@Param("Username") String username, @Param("Name") String name, @Param("StartDate") String startdate, @Param("SiteName") String sitename){
-           // parameters' characters are in lowwer case
-           return assignToRepository.createNewAssignTo(username, name, startdate, sitename);
-       }
+    //create a assignto
+    @Transactional
+    @PostMapping(path="/assign_to")
+    public @ResponseBody
+    int createNewTake(@Param("Username") String username, @Param("Name") String name, @Param("StartDate") String startdate, @Param("SiteName") String sitename){
+        // parameters' characters are in lowwer case
+        return assignToRepository.createNewAssignTo(username, name, startdate, sitename);
+    }
 
 }
