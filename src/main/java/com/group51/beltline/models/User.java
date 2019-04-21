@@ -30,7 +30,9 @@ public class User {
         this.password="";
         this.status = "Pending";
     }
-    public User() {}
+    public User() {
+        this.status="Pending";
+    }
 
     public User(String username,
                 String firstName,

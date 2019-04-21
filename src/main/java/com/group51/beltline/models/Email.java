@@ -8,10 +8,11 @@ import javax.persistence.Entity;
 @Entity
 @Table(name="Email")
 public class Email {
-    @Id
+
     @Column(name="Username")
     private String username;
 
+    @Id
     @Column(name="EmailAddress")
     private String email;
 

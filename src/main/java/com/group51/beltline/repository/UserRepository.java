@@ -20,6 +20,7 @@ public interface UserRepository extends JpaRepository<User, String> {
     @Query(value = "SELECT * FROM User WHERE Username=?1 AND Password=?2 AND Status='Approved'", nativeQuery = true)
     User checkLogin(@Param("username") String username, @Param("password") String password);
 
+
     //adds to "User" table
     @Modifying //current default for Status is 'Pending'
     @Query(value = "insert into User (Firstname,Lastname, Username, Status, Password) VALUES (?1,?2,?3, 'Pending' ,?4)", nativeQuery = true)

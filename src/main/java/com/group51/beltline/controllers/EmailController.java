@@ -5,10 +5,7 @@ import com.group51.beltline.repository.AssignToRepository;
 import com.group51.beltline.repository.EmailRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
 
@@ -32,7 +29,7 @@ public class EmailController {
     //gets all the Emails associated w/ a user
     @GetMapping(path="/userEmails")
     public @ResponseBody
-    Collection<Email> getAllUserEmails(@RequestParam("username")String username){
+    Collection<Email> getAllUserEmails(@RequestHeader("username")String username){
         return emailRepository.getAllUserEmails(username);
 
     }
