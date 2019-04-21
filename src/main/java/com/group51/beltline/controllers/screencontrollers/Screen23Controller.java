@@ -30,6 +30,15 @@ public class Screen23Controller {
             return transitRepository.updateNewTransit(type, route, price);
         }
 
+        //delete Connects
+        // need to test
+        @Transactional
+        @DeleteMapping(path="/screen23/deleteConnects")
+        public @ResponseBody
+        int deleteConnects(@Param("SiteName") String sitename){
+            return connectRepository.deleteConnects(sitename);
+        }
+
         //update a Connect
         @Transactional
         @PutMapping(path="/screen23/updateConnect")
