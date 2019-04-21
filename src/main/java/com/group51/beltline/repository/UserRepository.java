@@ -17,7 +17,7 @@ public interface UserRepository extends JpaRepository<User, String> {
     User getOneUser(@Param("username") String username);
 
 
-    @Query(value = "SELECT * FROM User WHERE Username=?1 AND Password=?2 AND Status='Approved'", nativeQuery = true)
+    @Query(value = "SELECT exists e.email, u.password FROM Email WHERE Email=?1 AND Password=?2 AND Status='Approved'", nativeQuery = true)
     User checkLogin(@Param("username") String username, @Param("password") String password);
 
 
@@ -27,13 +27,22 @@ public interface UserRepository extends JpaRepository<User, String> {
     int createNewUser(@Param("firstName") String firstName, @Param("lastName") String lastName, @Param("username") String username, @Param("password") String password);
 
 
+
     @Modifying
-    @Query(value = "UPDATE User SET status = 'Approved' WHERE username = $username")
+    @Query(value = "UPDATE User SET Status = 'Approved' WHERE Username=?1")
     int approveUser(@Param("username")String username);
 
 
     @Modifying
-    @Query(value = "UPDATE User SET status = 'Declined' WHERE username = $username")
+    @Query(value = "UPDATE User SET status = 'Declined' WHERE Username=?1")
     int declineUser(@Param("username")String username);
+
+    @Query(value="SELECT COUNT(Username) from User where Username=?1")
+    int usernameExists(@Param("username") String username);
+
+    @Query(value="SELECT COUNT(Phone) from Employee where Phone=?1")
+    int phoneExists(@Param("phone") String phone);
+
+
 
 }

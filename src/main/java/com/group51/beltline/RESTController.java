@@ -5,6 +5,7 @@ import com.group51.beltline.models.DTO.take_transit;
 import com.group51.beltline.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -51,6 +52,12 @@ public class RESTController {
 
 
 
+    @Transactional
+    @PostMapping(path="/visitors")
+    public @ResponseBody
+    int addVisitor(@RequestHeader("username") String username) {
+        return visitorRepository.addVisitor(username);
+    }
 
 
 

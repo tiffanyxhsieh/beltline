@@ -4,10 +4,9 @@ import com.group51.beltline.models.Staff;
 import com.group51.beltline.repository.StaffRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
+import javax.transaction.Transactional;
 import java.util.Collection;
 
 @Controller
@@ -23,4 +22,10 @@ public class StaffController {
         return staffRepository.getAllStaff();
     }
 
+    @Transactional
+    @PostMapping(path="/staff")
+    public @ResponseBody
+    int createNewUser(@RequestHeader("username") String username) {
+        return staffRepository.addStaff(username);
+    }
 }

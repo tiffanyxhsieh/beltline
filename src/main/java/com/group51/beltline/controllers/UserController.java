@@ -1,8 +1,11 @@
 package com.group51.beltline.controllers;
 
+import com.group51.beltline.models.DTO.ManageUser;
 import com.group51.beltline.models.User;
+import com.group51.beltline.repository.ManageUserRepository;
 import com.group51.beltline.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,6 +17,8 @@ import java.util.Collection;
 public class UserController {
     @Autowired
     UserRepository userRepository;
+    @Autowired
+    ManageUserRepository manageUserRepository;
 
     //Get ALL users
     @GetMapping(path = "/users")
@@ -56,4 +61,23 @@ public class UserController {
         return userRepository.declineUser(username);
     }
 
+
+    @GetMapping(path="/screen18/filter")
+    public @ResponseBody
+    Collection<ManageUser> filterManagedUsers(@Param("username") String username, @Param("status") String status, @Param("type") String type){
+        return manageUserRepository.adminManageUserFilter(username, status, type);
+    }
+
+
+    @GetMapping(path="/usernameExists")
+    public @ResponseBody
+    int usernameExists(@RequestHeader("username") String username) {
+        return userRepository.usernameExists(username);
+    }
+
+    @GetMapping(path="/phoneExists")
+    public @ResponseBody
+    int phoneExists(@RequestHeader("phone") String phone) {
+        return userRepository.phoneExists(phone);
+    }
 }
