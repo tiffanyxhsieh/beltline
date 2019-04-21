@@ -18,8 +18,6 @@ public class Screen19Controller {
     private SiteRepository siteRepository;
 
     // filter
-
-    //Get ALL Site
     @GetMapping(path = "/screen19/filter")
     public @ResponseBody
     Collection<Site> filter(@Param("Name") String name, @Param("Zipcode") String zipcode, @Param("Address") String address, @Param("OpenEveryday") String openeveryday, @Param("Manager") String manager){

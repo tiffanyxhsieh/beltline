@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Entity
 @IdClass(manage_transitKey.class)
 @Table(name="manage_transit")
-public class manage_transit {
+public class Manage_transit {
     @Id
     @Column(name="route")
     private String route;
@@ -30,10 +30,10 @@ public class manage_transit {
     @Column(name="transits_logged")
     private double transits_logged;
 
-    public manage_transit() {
+    public Manage_transit() {
     }
 
-    public manage_transit(String route, String type, String price, String connected_sites, double transits_logged) {
+    public Manage_transit(String route, String type, String price, String connected_sites, double transits_logged) {
         this.route = route;
         this.type = type;
         this.price = price;
@@ -81,27 +81,27 @@ public class manage_transit {
         this.transits_logged = transits_logged;
     }
 
-    public manage_transit route(String route) {
+    public Manage_transit route(String route) {
         this.route = route;
         return this;
     }
 
-    public manage_transit type(String type) {
+    public Manage_transit type(String type) {
         this.type = type;
         return this;
     }
 
-    public manage_transit price(String price) {
+    public Manage_transit price(String price) {
         this.price = price;
         return this;
     }
 
-    public manage_transit connected_sites(String connected_sites) {
+    public Manage_transit connected_sites(String connected_sites) {
         this.connected_sites = connected_sites;
         return this;
     }
 
-    public manage_transit transits_logged(double transits_logged) {
+    public Manage_transit transits_logged(double transits_logged) {
         this.transits_logged = transits_logged;
         return this;
     }
@@ -110,10 +110,10 @@ public class manage_transit {
     public boolean equals(Object o) {
         if (o == this)
             return true;
-        if (!(o instanceof manage_transit)) {
+        if (!(o instanceof Manage_transit)) {
             return false;
         }
-        manage_transit manage_transit = (manage_transit) o;
+        Manage_transit manage_transit = (Manage_transit) o;
         return Objects.equals(route, manage_transit.route) && Objects.equals(type, manage_transit.type) && Objects.equals(price, manage_transit.price) && Objects.equals(connected_sites, manage_transit.connected_sites) && transits_logged == manage_transit.transits_logged;
     }
 
@@ -132,4 +132,6 @@ public class manage_transit {
             ", transits_logged='" + getTransits_logged() + "'" +
             "}";
     }
+
+   
 }
