@@ -16,7 +16,7 @@ public interface SiteRepository extends JpaRepository<Site, String> {
 
     // filtering a site
     @Query(value = 
-            "SELECT * FROM Site where (?1 IS NULL OR Name like CONCAT('%', ?1,'%')) AND (?2 IS NULL OR Zipcode=?2) AND (?3 IS NULL OR Address like CONCAT('%', ?3,'%')) AND (?4 IS NULL OR OpenEveryday like CONCAT('%', ?4,'%')) AND (?5 IS NULL OR Manager like CONCAT('%', ?5,'%')) Order by Name"
+            "SELECT * FROM Site where (?1 IS NULL OR Name like CONCAT('%',?1,'%')) AND (?2 IS NULL OR Zipcode=?2) AND (?3 IS NULL OR Address like CONCAT('%',?3,'%')) AND (?4 IS NULL OR OpenEveryday like CONCAT('%',?4,'%')) AND (?5 IS NULL OR Manager like CONCAT('%',?5,'%')) Order by Name"
             // "SELECT * FROM Site" + 
             // "where (?1 IS NULL OR Name = ?1)\n" +
             // "AND (?2 IS NULL OR Zipcode =?2)\n" +

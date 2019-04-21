@@ -1,7 +1,7 @@
 package com.group51.beltline.repository;
 
 import com.group51.beltline.models.Connect;
-import com.group51.beltline.models.DTO.Manage_transit;
+import com.group51.beltline.models.views.Manage_transit;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;

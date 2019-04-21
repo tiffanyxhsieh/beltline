@@ -1,7 +1,7 @@
 package com.group51.beltline.controllers.screencontrollers;
 
 import com.group51.beltline.models.*;
-import com.group51.beltline.models.DTO.Manage_transit;
+import com.group51.beltline.models.views.Manage_transit;
 import com.group51.beltline.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
@@ -25,7 +25,7 @@ public class Screen22Controller {
     //Get ALL manage_transit
     @GetMapping(path = "/screen22/showTable")
     public @ResponseBody
-    Collection<Manage_transit> getSites(){
+    Collection<Manage_transit> getAll(){
         return manage_transitRepository.getAllManageTransit();
     }
 

@@ -24,5 +24,4 @@ public interface ConnectRepository extends JpaRepository<Connect, String> {
      @Query(value = "delete from Connect where SiteName=?1", nativeQuery = true)
      int deleteConnects(@Param("SiteName") String SiteName);
  
- 
 }
