@@ -46,5 +46,15 @@ public class Screen23Controller {
         int putNewTransitandConnect(@Param("Type") String type, @Param("Route") String route, @Param("SiteName") String sitename){
             return connectRepository.createNewConnect(sitename, type, route);
         }
+
+        //create a Connect
+        //create a connect
+        @Transactional
+        @PostMapping(path="/screen23/createConnect")
+        public @ResponseBody
+        int createNewTake(@Param("SiteName") String sitename, @Param("Type") String type, @Param("Route") String route){
+            // parameters' characters are in lowwer case
+            return connectRepository.createNewConnect(sitename, type, route);
+        }
     }
 }
