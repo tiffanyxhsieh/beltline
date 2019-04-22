@@ -13,6 +13,10 @@ public interface TransitRepository extends JpaRepository<Transit, String> {
     @Query(value = "SELECT * FROM Transit", nativeQuery = true)
     Collection<Transit> getAllTransits();
 
+    // valid a transit by the key
+    @Query(value="SELECT COUNT(*) from Transit where Type=?1 AND Route=?2")
+    int transitExists(@Param("Type") String type, @Param("Route") String route);
+
     // select Transit by name
     @Query(value = "SELECT * FROM Transit WHERE Type=?1 AND Route=?2", nativeQuery = true)
     Transit getTransitByKey(@Param("Type") String type, @Param("Route") String route);

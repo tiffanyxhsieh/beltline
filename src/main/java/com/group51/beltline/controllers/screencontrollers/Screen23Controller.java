@@ -30,6 +30,14 @@ public class Screen23Controller {
             return transitRepository.getTransitByKey(type, route);
         }
 
+        //validate a unique transit
+        // tested
+        @GetMapping(path = "/screen23/transitExists") 
+        public @ResponseBody
+        int transitExists(@Param("Type") String type, @Param("Route") String route){
+            return transitRepository.transitExists(type, route);
+        }
+
         // get a list of sites for a transit
         //Get sites for a transit tested
         @GetMapping(path = "/screen23/getConnectsByTransit")

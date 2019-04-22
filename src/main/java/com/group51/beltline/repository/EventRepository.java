@@ -13,6 +13,10 @@ public interface EventRepository extends JpaRepository<Event, String> {
     @Query(value = "SELECT * FROM Event", nativeQuery = true)
     Collection<Event> getAllEvents();
 
+    // validate an event by key
+    @Query(value="SELECT COUNT(*) from Event where Name=?1 AND StartDate=?2 AND SiteName=?3")
+    int eventExists(@Param("name") String name, @Param("StartDate") String startdate, @Param("SiteName") String sitename);
+
     // select Event by name
     @Query(value = "SELECT * FROM Event WHERE Name=?1", nativeQuery = true)
     Event getEventByName(@Param("name") String name);

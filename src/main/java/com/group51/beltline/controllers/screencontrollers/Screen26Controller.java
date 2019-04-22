@@ -30,6 +30,14 @@ public class Screen26Controller {
     @Autowired
     private StaffNameRepository staffNameRepository;
 
+    
+    // test unique event by the key
+    @GetMapping(path = "/screen26/eventsExists") 
+    public @ResponseBody
+    int eventExists(@Param("name") String name, @Param("StartDate") String startdate, @Param("SiteName") String sitename){
+        return eventRepository.eventExists(name, startdate, sitename);
+    }
+
     // update description of an event
     //tested
     @Transactional
