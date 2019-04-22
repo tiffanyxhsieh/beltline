@@ -51,4 +51,7 @@ public interface EventRepository extends JpaRepository<Event, String> {
      @Query(value = "SELECT DISTINCT * FROM assign_to AS a JOIN user AS u ON a.username = u.username", nativeQuery = true)
      Collection<User> getStaffForEvent(@Param("Name") String name, @Param("StartDate") String startdate, @Param("SiteName") String sitename);
 
+    // get duration of an event
+    @Query(value = "SELECT datediff(enddate,startdate) FROM Event WHERE Name=?1 AND StartDate=?2 AND SiteName=?3", nativeQuery = true)
+    int getEventDuration(@Param("name") String name, @Param("StartDate") String startdate, @Param("SiteName") String sitename);
 }
