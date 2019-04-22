@@ -1,6 +1,7 @@
 package com.group51.beltline.repository;
 
 import com.group51.beltline.models.Site;
+import com.group51.beltline.models.StaffName;
 import com.group51.beltline.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -14,7 +15,13 @@ public interface SiteRepository extends JpaRepository<Site, String> {
     @Query(value = "SELECT * FROM Site", nativeQuery = true)
     Collection<Site> getAllSites();
 
+    //select all unassigned managers for sites
+    // Select distinct Concat(firstname, ' ', lastname) from user where username in (SELECT distinct username from manager where username not in (SELECT distinct name FROM Manager as m JOIN site AS s ON m.username = s.manager))
+    @Query(value = "Select distinct Concat(firstname, ' ', lastname) from user where username in (SELECT distinct username from manager where username not in (SELECT distinct username FROM Manager as m JOIN site AS s ON m.username = s.manager)) ", nativeQuery = true)
+    Collection<StaffName> getUnassignedManagers();
+
     // filtering a site
+    // double check name!
     @Query(value = 
             "SELECT * FROM Site where (?1 IS NULL OR Name like CONCAT('%',?1,'%')) AND (?2 IS NULL OR Zipcode=?2) AND (?3 IS NULL OR Address like CONCAT('%',?3,'%')) AND (?4 IS NULL OR OpenEveryday like CONCAT('%',?4,'%')) AND (?5 IS NULL OR Manager like CONCAT('%',?5,'%')) Order by Name"
             // "SELECT * FROM Site" + 

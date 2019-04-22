@@ -16,12 +16,28 @@ import java.util.List;
 public class Screen21Controller {
     @Autowired
     private SiteRepository siteRepository;
+    @Autowired
+    private UserRepository userRepository;
+
 
     // get unsigned managers
-
+    //tested
+    @GetMapping(path="/screen21/findavemanagers")
+    public @ResponseBody
+            Collection<StaffName> getUnassignedManage(){
+        return siteRepository.getUnassignedManagers();
+    }
+    
     // get username by first and last name
+    // Tested
+    @GetMapping(path="/screen21/findusersbyname")
+    public @ResponseBody
+    Collection<User> getOneUserByName(@Param("firstname") String firstname, @Param("lastname") String lastname) {
+        return userRepository.getOneUserByName(firstname, lastname);
+    }
 
     //create a site
+    // tesetd
     @Transactional
     @PostMapping(path="/screen21/create")
     public @ResponseBody
