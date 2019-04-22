@@ -1,6 +1,8 @@
 package com.group51.beltline.controllers;
 
 import com.group51.beltline.models.DTO.take_transit;
+import com.group51.beltline.models.DTO.take_transit1;
+import com.group51.beltline.models.User;
 import com.group51.beltline.repository.Take_TransitRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
@@ -23,7 +25,7 @@ public class Take_TransitController {
     //TODO:FRONT END...must make default values
     @GetMapping(path="/screen15/filter")
     public @ResponseBody
-    Collection<take_transit> getAlltake_transit(
+    take_transit1 getAlltake_transit(
                                                 @Param(value="site") String site,
                                                 @Param(value="type") String type,
                                                 @Param(value="low") String low,

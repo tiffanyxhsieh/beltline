@@ -43,7 +43,7 @@ public class UserController {
     @Transactional
     @PostMapping(path="/user")
     public @ResponseBody
-    int createNewUser(@RequestParam("firstName") String firstName, @RequestParam("lastName") String lastName, @RequestParam("username") String username, @RequestParam("password") String password){
+    int createNewUser(@RequestHeader("firstName") String firstName, @RequestHeader("lastName") String lastName, @RequestHeader("username") String username, @RequestHeader("password") String password){
         return userRepository.createNewUser(firstName, lastName, username, password);
     }
 

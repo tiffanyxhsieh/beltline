@@ -36,12 +36,13 @@ public class RESTController {
     //Check login credentials
     @GetMapping(path="/login")
     public @ResponseBody
-    boolean checkLogin(@RequestHeader(value="username") String username, @RequestHeader(value="password") String password) {
-        if(userRepository.checkLogin(username, password) != null) {
-            return true;
-        }
-
-        return false;
+    int checkLogin(@RequestHeader(value="email") String email, @RequestHeader(value="password") String password) {
+            return userRepository.checkLogin(email, password);
+// if(userRepository.checkLogin(email, password) != null) {
+//            return true;
+//        }
+//
+//        return false;
     }
 
     @GetMapping(path="/manageUser")

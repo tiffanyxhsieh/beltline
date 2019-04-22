@@ -17,13 +17,13 @@ public interface UserRepository extends JpaRepository<User, String> {
     User getOneUser(@Param("username") String username);
 
 
-    @Query(value = "SELECT exists e.email, u.password FROM Email WHERE Email=?1 AND Password=?2 AND Status='Approved'", nativeQuery = true)
-    User checkLogin(@Param("username") String username, @Param("password") String password);
+    @Query(value = "SELECT EXISTS (select * from user as u join email as e on u.username = e.username where Status='Approved' AND emailaddress =:email and password = CONCAT(MD5(:password)))", nativeQuery = true)
+    int checkLogin(@Param("email") String email, @Param("password") String password);
 
 
     //adds to "User" table
     @Modifying //current default for Status is 'Pending'
-    @Query(value = "insert into User (Firstname,Lastname, Username, Status, Password) VALUES (?1,?2,?3, 'Pending' ,?4)", nativeQuery = true)
+    @Query(value = "insert into User (Firstname,Lastname, Username, Status, Password) VALUES (?1,?2,?3, 'Pending' ,MD5(?4))", nativeQuery = true)
     int createNewUser(@Param("firstName") String firstName, @Param("lastName") String lastName, @Param("username") String username, @Param("password") String password);
 
 

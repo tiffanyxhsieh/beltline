@@ -9,8 +9,8 @@ import javax.persistence.*;
 @Table(name="take_transit")
 public class take_transit {
     @Id
-    @Column(name="date")
-    private String date;
+    @Column(name="ConnectedSites")
+    private int connectedSite;
 
     @Id
     @Column(name="route")
@@ -25,21 +25,14 @@ public class take_transit {
     private double price;
 
     public take_transit(){}
-    public take_transit(String date, String route, String type, double price){
-        this.date = date;
+    public take_transit(int connectedSites, String route, String type, double price){
         this.route = route;
         this.type = type;
         this.price = price;
+        this.connectedSite =connectedSites;
     }
 
 
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
 
     public String getRoute() {
         return route;
@@ -57,11 +50,22 @@ public class take_transit {
         this.type = type;
     }
 
+
+
+
     public double getPrice() {
         return price;
     }
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public int getConnectedSite() {
+        return connectedSite;
+    }
+
+    public void setConnectedSite(int connectedSite) {
+        this.connectedSite = connectedSite;
     }
 }
