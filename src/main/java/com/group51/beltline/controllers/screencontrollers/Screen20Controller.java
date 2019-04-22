@@ -18,6 +18,12 @@ public class Screen20Controller {
     private SiteRepository siteRepository;
 
     // select a signle site
+    //Get site by name
+    @GetMapping(path = "/screen20/getSite") // Map ONLY GET Requests
+    public @ResponseBody
+    Site getSiteByName(@Param(value="name") String name){
+        return siteRepository.getSiteByName(name);
+    }
 
     //update a site 
     @Transactional

@@ -17,7 +17,16 @@ public class Screen19Controller {
     @Autowired
     private SiteRepository siteRepository;
 
-    // TODO select all managers for the dropbox
+    @Autowired
+    private ManagerRepository managerRepository;
+
+    // select all managers for the dropbox
+    //get all managers
+    @GetMapping(path="/screen19/getmanagers")
+    public @ResponseBody
+    Collection<Manager> getAllManagers(){
+        return managerRepository.getAllManagers();
+    }
 
     // filter
     @GetMapping(path = "/screen19/filter")
