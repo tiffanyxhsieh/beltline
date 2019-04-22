@@ -26,6 +26,7 @@ public class Screen27Controller {
         private StaffNameRepository staffNameRepository;
        
         //create a event
+        // tested
         @Transactional
         @PostMapping(path="/screen27/createEvent")
         public @ResponseBody
@@ -34,6 +35,7 @@ public class Screen27Controller {
         }
 
         //create a assignto
+        // tested
         @Transactional
         @PostMapping(path="/screen27/createAssignTo")
         public @ResponseBody
@@ -42,6 +44,7 @@ public class Screen27Controller {
         }
 
         // TODO find staff that are available
+        // tested
         @GetMapping(path = "/screen27/getAvailableStaff")
         public @ResponseBody
         Collection<StaffName> initByManager(@Param("start_date") String start_date, @Param("end_date") String end_date){

@@ -31,6 +31,7 @@ public class Screen26Controller {
     private StaffNameRepository staffNameRepository;
 
     // update description of an event
+    //tested
     @Transactional
     @PutMapping(path = "/screen26/updateDes")
     public @ResponseBody int updateDes(@Param("Description") String description, @Param("Name") String name,
@@ -40,7 +41,7 @@ public class Screen26Controller {
     }
 
     // select staff assigned to this event
-    
+    // tested
     @GetMapping(path = "/screen26/getAssignedStaff")
     public @ResponseBody
     Collection<StaffName> initByManager (@Param("eventname") String eventname, @Param("sitename") String sitename, @Param("startdate") String startdate){
@@ -48,6 +49,7 @@ public class Screen26Controller {
     }
 
     // select staff which is available
+    // tested
     @GetMapping(path = "/screen26/getAvailableStaff")
     public @ResponseBody
     Collection<StaffName> initByManager(@Param("start_date") String start_date, @Param("end_date") String end_date){
@@ -55,6 +57,7 @@ public class Screen26Controller {
     }
 
     // delete staffs assigned to this event
+    // tested
     @Transactional
     @DeleteMapping(path="/screen25/deleteStaffs")
     public @ResponseBody

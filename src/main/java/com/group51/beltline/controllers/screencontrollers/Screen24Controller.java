@@ -11,7 +11,7 @@ import javax.transaction.Transactional;
 import java.util.Collection;
 import java.util.List;
 
-// need to test
+
 @Controller
 @RequestMapping
 public class Screen24Controller {
@@ -24,6 +24,7 @@ public class Screen24Controller {
         private ConnectRepository connectRepository;
 
         //create a transit
+        //tested
         @Transactional
         @PostMapping(path="/screen24/createTransit")
         public @ResponseBody
@@ -32,6 +33,7 @@ public class Screen24Controller {
         }
 
         //create a Connect
+        //tested
         @Transactional
         @PostMapping(path="/screen24/createConnect")
         public @ResponseBody

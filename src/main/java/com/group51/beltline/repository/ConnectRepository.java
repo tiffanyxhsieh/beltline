@@ -23,5 +23,9 @@ public interface ConnectRepository extends JpaRepository<Connect, String> {
      @Modifying 
      @Query(value = "delete from Connect where SiteName=?1", nativeQuery = true)
      int deleteConnects(@Param("SiteName") String SiteName);
+
+     // get connects by transit
+     @Query(value = "SELECT * FROM Connect where Type=?1 AND Route=?2", nativeQuery = true)
+	Collection<Connect> getConnectsByTransit(@Param("type") String type, @Param("route") String route);
  
 }

@@ -22,7 +22,24 @@ public class Screen23Controller {
         @Autowired
         private ConnectRepository connectRepository;
 
+        //get a signle transit
+        //Get transit by key tested
+        @GetMapping(path = "/screen23/getOneTransit") // Map ONLY GET Requests
+        public @ResponseBody
+        Transit getTransitByName(@Param("Type") String type, @Param("Route") String route){
+            return transitRepository.getTransitByKey(type, route);
+        }
+
+        // get a list of sites for a transit
+        //Get sites for a transit tested
+        @GetMapping(path = "/screen23/getConnectsByTransit")
+        public @ResponseBody
+        Collection<Connect> getConnectsByTransit(@Param("Type") String type,@Param("Route") String route){
+            return connectRepository.getConnectsByTransit(type, route);
+        }
+
         //update a transit
+        // tested
         @Transactional
         @PutMapping(path="/screen23/updateTransit")
         public @ResponseBody
@@ -31,7 +48,7 @@ public class Screen23Controller {
         }
 
         //delete Connects
-        // need to test
+        // tested
         @Transactional
         @DeleteMapping(path="/screen23/deleteConnects")
         public @ResponseBody
@@ -40,6 +57,7 @@ public class Screen23Controller {
         }
 
         //update a Connect
+        // tested
         @Transactional
         @PutMapping(path="/screen23/updateConnect")
         public @ResponseBody
@@ -48,7 +66,7 @@ public class Screen23Controller {
         }
 
         //create a Connect
-        //create a connect
+        //tested
         @Transactional
         @PostMapping(path="/screen23/createConnect")
         public @ResponseBody

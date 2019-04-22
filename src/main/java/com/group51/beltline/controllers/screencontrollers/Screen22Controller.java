@@ -12,7 +12,6 @@ import javax.transaction.Transactional;
 import java.util.Collection;
 import java.util.List;
 
-// TODO: filter the view for info
 @Controller
 @RequestMapping
 public class Screen22Controller {
@@ -23,6 +22,7 @@ public class Screen22Controller {
     private Manage_transitRepository manage_transitRepository;
 
     //Get ALL manage_transit
+    // tested
     @GetMapping(path = "/screen22/showTable")
     public @ResponseBody
     Collection<Manage_transit> getAll(){
@@ -30,13 +30,20 @@ public class Screen22Controller {
     }
 
     //create a transit
+    //tested
     @Transactional
-    @PostMapping(path="/screen22/create")
+    @PostMapping(path="/screen22/createtransit")
     public @ResponseBody
     int createNewTransit(@Param("Type") String type, @Param("Route") String route, @Param("Price") Double price){
         return transitRepository.createNewTransit(type, route, price);
     }
 
     // delete a transit
-
+    //tested
+    @Transactional
+    @DeleteMapping(path="/screen22/deletetransit")
+    public @ResponseBody
+    int deleteTransit(@Param("Type") String type, @Param("Route") String route){
+        return transitRepository.deleteTransit(type, route);
+    }
 }
