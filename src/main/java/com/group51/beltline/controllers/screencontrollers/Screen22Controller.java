@@ -36,4 +36,7 @@ public class Screen22Controller {
     int createNewTransit(@Param("Type") String type, @Param("Route") String route, @Param("Price") Double price){
         return transitRepository.createNewTransit(type, route, price);
     }
+
+    // delete a transit
+
 }

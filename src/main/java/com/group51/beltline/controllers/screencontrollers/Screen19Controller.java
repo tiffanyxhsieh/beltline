@@ -17,6 +17,8 @@ public class Screen19Controller {
     @Autowired
     private SiteRepository siteRepository;
 
+    // TODO select all managers for the dropbox
+
     // filter
     @GetMapping(path = "/screen19/filter")
     public @ResponseBody

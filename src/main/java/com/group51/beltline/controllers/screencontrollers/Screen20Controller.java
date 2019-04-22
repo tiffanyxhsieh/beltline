@@ -17,6 +17,8 @@ public class Screen20Controller {
     @Autowired
     private SiteRepository siteRepository;
 
+    // select a signle site
+
     //update a site 
     @Transactional
     @PutMapping(path="/screen20/update")
