@@ -19,4 +19,9 @@ public interface AssignToRepository extends JpaRepository<AssignTo, String> {
     @Query(value = "insert into Assign_to (Username, Name, StartDate, SiteName) VALUES (?1,?2,?3,?4)", nativeQuery = true)
     int createNewAssignTo(@Param("Username") String Username, @Param("Name") String Name, @Param("StartDate") String StartDate, @Param("SiteName") String SiteName);
 
+    // deletes assignTo
+     @Modifying 
+     @Query(value = "delete from Assign_to where SiteName=?1 AND StartDate=?2 AND Name=?3 AND Username=?4", nativeQuery = true)
+     int deleteAssignTos(@Param("SiteName") String sitename, @Param("StartDate") String startdate, @Param("Name") String name, @Param("Username") String username);
+
 }
