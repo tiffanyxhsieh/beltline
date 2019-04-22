@@ -22,6 +22,7 @@ public class Screen19Controller {
 
     // select all managers for the dropbox
     //get all managers
+    // tested
     @GetMapping(path="/screen19/getmanagers")
     public @ResponseBody
     Collection<Manager> getAllManagers(){
@@ -29,6 +30,7 @@ public class Screen19Controller {
     }
 
     // filter
+    // tested
     @GetMapping(path = "/screen19/filter")
     public @ResponseBody
     Collection<Site> filter(@Param("Name") String name, @Param("Zipcode") String zipcode, @Param("Address") String address, @Param("OpenEveryday") String openeveryday, @Param("Manager") String manager){
@@ -36,6 +38,7 @@ public class Screen19Controller {
     }
 
     //delete a site
+    // tested
     @Transactional
     @DeleteMapping(path="/screen19/delete")
     public @ResponseBody

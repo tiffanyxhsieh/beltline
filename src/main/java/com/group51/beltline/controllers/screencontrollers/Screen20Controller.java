@@ -19,6 +19,7 @@ public class Screen20Controller {
 
     // select a signle site
     //Get site by name
+    // tested
     @GetMapping(path = "/screen20/getSite") // Map ONLY GET Requests
     public @ResponseBody
     Site getSiteByName(@Param(value="name") String name){
@@ -26,6 +27,7 @@ public class Screen20Controller {
     }
 
     //update a site 
+    // tested
     @Transactional
     @PutMapping(path="/screen20/update")
     public @ResponseBody
