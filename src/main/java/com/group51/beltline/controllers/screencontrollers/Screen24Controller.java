@@ -23,7 +23,7 @@ public class Screen24Controller {
         @Autowired
         private ConnectRepository connectRepository;
 
-        //update a transit
+        //create a transit
         @Transactional
         @PostMapping(path="/screen24/createTransit")
         public @ResponseBody
@@ -31,7 +31,7 @@ public class Screen24Controller {
             return transitRepository.createNewTransit(type, route, price);
         }
 
-        //update a Connect
+        //create a Connect
         @Transactional
         @PostMapping(path="/screen24/createConnect")
         public @ResponseBody

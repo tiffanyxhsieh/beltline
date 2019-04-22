@@ -22,6 +22,8 @@ public class Screen27Controller {
         private EventRepository eventRepository;
         @Autowired
         private AssignToRepository assignToRepository;
+        @Autowired
+        private StaffNameRepository staffNameRepository;
        
         //create a event
         @Transactional
@@ -37,6 +39,13 @@ public class Screen27Controller {
         public @ResponseBody
         int createNewTake(@Param("Username") String username, @Param("Name") String name, @Param("StartDate") String startdate, @Param("SiteName") String sitename){
             return assignToRepository.createNewAssignTo(username, name, startdate, sitename);
+        }
+
+        // TODO find staff that are available
+        @GetMapping(path = "/screen27/getAvailableStaff")
+        public @ResponseBody
+        Collection<StaffName> initByManager(@Param("start_date") String start_date, @Param("end_date") String end_date){
+            return staffNameRepository.getAvStaff(start_date, end_date);
         }
     }
 }
