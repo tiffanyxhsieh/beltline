@@ -20,7 +20,7 @@ public interface Manage_eventRepository extends JpaRepository<Manage_event, Stri
     Collection<Manage_event> getManageEventByManager(@Param("manager") String manager);
     
     // need to do test
-    @Query(value = "SELECT name, CountStaff, Duration, TotalVisits, TotalRevenue FROM manager_event where manager=?1 AND (?2 IS NULL OR Name like CONCAT('%', ?2, '%')) AND (?3 IS NULL OR Description like CONCAT('%', ?3, '%')) AND (?4 IS NULL OR StartDate >= ?4) AND (?5 IS NULL OR StartDate <= ?5) AND (?6 IS NULL OR Duration >= ?6) AND (?7 IS NULL OR Duration <= ?7) AND (?8 IS NULL OR TotalVisits >= ?8) AND (?9 IS NULL OR TotalVisits <= ?9) AND (?10 IS NULL OR TotalRevenue >= ?10) AND (?11 IS NULL OR TotalRevenue <= ?11) Order by name", nativeQuery = true)
+    @Query(value = "SELECT name, CountStaff, Duration, TotalVisits, TotalRevenue FROM manager_event where (?1 IS NULL OR manager=?1) AND (?2 IS NULL OR Name like CONCAT('%', ?2, '%')) AND (?3 IS NULL OR Description like CONCAT('%', ?3, '%')) AND (?4 IS NULL OR StartDate >= ?4) AND (?5 IS NULL OR StartDate <= ?5) AND (?6 IS NULL OR Duration >= ?6) AND (?7 IS NULL OR Duration <= ?7) AND (?8 IS NULL OR TotalVisits >= ?8) AND (?9 IS NULL OR TotalVisits <= ?9) AND (?10 IS NULL OR TotalRevenue >= ?10) AND (?11 IS NULL OR TotalRevenue <= ?11) Order by name", nativeQuery = true)
     Collection<Manage_event> filter(@Param("manager") String manager, 
                                     @Param("name") String name,
                                     @Param("keyword") String keyword,

@@ -29,13 +29,15 @@ public class Screen25Controller {
     //  }
 
     // initialize the event managed by a manager
+    // tested
     @GetMapping(path = "/screen25/eventbymanager")
     public @ResponseBody
     Collection<Manage_event> initByManager(@Param("manager") String manager){
         return manage_eventRepository.getManageEventByManager(manager);
     }
 
-    //filter // need to do test
+    //filter
+    // tested
     @GetMapping(path = "/screen25/filter")
     public @ResponseBody
     Collection<Manage_event> filter(@Param("manager") String manager, 
@@ -53,6 +55,7 @@ public class Screen25Controller {
     }
 
     // delete a event
+    // tested
     @Transactional
     @DeleteMapping(path="/screen25/deleteEvent")
     public @ResponseBody
@@ -62,6 +65,7 @@ public class Screen25Controller {
 
      // select a event by key
      //SiteName, StartDate, Name
+     // tested
     @GetMapping(path = "/screen25/selectEventByKey") // Map ONLY GET Requests
     public @ResponseBody
     Event getEventByName(@Param("name") String name, @Param("StartDate") String startdate, @Param("SiteName") String sitename){
