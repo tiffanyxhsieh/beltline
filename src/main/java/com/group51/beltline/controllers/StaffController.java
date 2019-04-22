@@ -22,10 +22,10 @@ public class StaffController {
         return staffRepository.getAllStaff();
     }
 
-    @Transactional
-    @PostMapping(path="/staff")
-    public @ResponseBody
-    int createNewUser(@RequestHeader("username") String username) {
-        return staffRepository.addStaff(username);
-    }
+    // @Transactional
+    // @PostMapping(path="/staff")
+    // public @ResponseBody
+    // int createNewUser(@RequestHeader("username") String username) {
+    //     return staffRepository.addStaff(username);
+    // }
 }
