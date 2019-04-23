@@ -25,8 +25,8 @@ public class Screen19Controller {
     // tested
     @GetMapping(path="/screen19/getmanagers")
     public @ResponseBody
-    Collection<Manager> getAllManagers(){
-        return managerRepository.getAllManagers();
+    Collection<StaffName> getAllManagers(){
+        return managerRepository.getAllManagersName();
     }
 
     // filter
