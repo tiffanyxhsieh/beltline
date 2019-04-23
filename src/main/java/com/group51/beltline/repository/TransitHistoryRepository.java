@@ -9,16 +9,28 @@ import java.util.Collection;
 
 public interface TransitHistoryRepository extends JpaRepository<TransitHistory, String> {
 //GET List<TransitHistory> getTransitHistory(username, type, site, route, startDate, endDate)
-    //TODO: fix this....filter isn't going by username
+    //TODO: fix site filter
+    //            "AND (type, route) in (select type,route from connect where (?6 IS NULL OR SiteName=?6))"
+
     @Query(value="Select * from take_transit where " +
             "username=?1 AND " +
             "(?2 IS NULL OR ?2='' or `type`=?2) AND " +
             "(?3 IS NULL OR ?3='' or route=?3) AND " +
-            "date BETWEEN ?4 and ?5", nativeQuery=true)
+            "date BETWEEN ?4 and ?5 " +
+            "AND (type, route) in (select type,route from connect where (?6 IS NULL OR SiteName=?6))"
+            , nativeQuery=true)
     Collection<TransitHistory> getUserTransitHistory(@Param("username")String username,
                                                      @Param("type")String type,
                                                      @Param("route") String route,
                                                      @Param("start") String start,
-                                                     @Param("end") String end);
+                                                     @Param("end") String end,
+                                                     @Param("site") String site
+
+
+    );
+
+
+
+
 
 }

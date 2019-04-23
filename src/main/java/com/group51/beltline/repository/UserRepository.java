@@ -43,6 +43,11 @@ public interface UserRepository extends JpaRepository<User, String> {
     @Query(value="SELECT COUNT(Phone) from Employee where Phone=?1")
     int phoneExists(@Param("phone") String phone);
 
+    @Modifying
+    @Query(value="insert into visit_site(Username, SiteName, `Date`) VALUES (?1, ?2, ?3)", nativeQuery = true)
+    int logVisit(@Param("username") String username, @Param("site_name") String site_name, @Param("date_log") String date_log);
 
 
+    @Query(value="select exists(select * from visit_event where username=?1 and sitename=?2 and  date=?3", nativeQuery = true)
+    int logExists(@Param("username") String username, @Param("site_name")String site_name, @Param("date") String date);
 }

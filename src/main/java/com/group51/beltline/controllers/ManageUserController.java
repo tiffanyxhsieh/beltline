@@ -27,11 +27,7 @@ public class ManageUserController {
     }
 
 
-    @GetMapping(path="/screen18/filter")
-    public @ResponseBody
-    Collection<ManageUser> filterManagedUsers(@Param("username") String username, @Param("status") String status, @Param("usertype") String usertype){
-        return manageUserRepository.manageUserFilter(username, status, usertype);
-    }
+
 
 
 

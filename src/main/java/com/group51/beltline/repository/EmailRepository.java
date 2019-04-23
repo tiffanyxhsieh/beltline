@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.transaction.Transactional;
 import java.util.Collection;
 
 public interface EmailRepository extends JpaRepository<Email, String> {
@@ -21,8 +22,13 @@ public interface EmailRepository extends JpaRepository<Email, String> {
     @Query(value="Select EmailAddress from Email where Username=?1", nativeQuery = true)
     Collection<String> getAllUserEmails(@Param("username") String username);
 
+    @Transactional
     @Modifying
     @Query(value = "insert into Email (Username, EmailAddress) VALUES (?1,?2)", nativeQuery=true)
     int addEmail(@Param("username") String username, @Param("email") String email);
+
+    @Modifying
+    @Query(value = "delete from Email where Username=?1 and EmailAddress=?2", nativeQuery=true)
+    int deleteEmail(@Param("username") String username, @Param("email") String email);
 
 }

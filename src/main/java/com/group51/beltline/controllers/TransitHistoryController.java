@@ -26,8 +26,9 @@ public class TransitHistoryController {
                                                                                      @Param("type") String type,
                                                                                      @Param("route") String route,
                                                                                      @Param("start") String start,
-                                                                                     @Param("end") String end) {
-        return transitHistoryRepository.getUserTransitHistory(username, type, route, start, end);
+                                                                                     @Param("end") String end,
+                                                                                     @Param("site") String site) {
+        return transitHistoryRepository.getUserTransitHistory(username, type, route, start, end, site);
     }
 
 
