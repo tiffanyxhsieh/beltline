@@ -24,6 +24,10 @@ public interface SiteRepository extends JpaRepository<Site, String> {
     @Query(value = "Select distinct Concat(firstname, ' ', lastname) from user where username in (SELECT distinct username from manager where username not in (SELECT distinct username FROM Manager as m JOIN site AS s ON m.username = s.manager)) ", nativeQuery = true)
     Collection<StaffName> getUnassignedManagers();
 
+    @Query(value="SELECT * FROM Site where Manager=?1", nativeQuery = true)
+    Site getSiteOfManager(@Param("username")String username);
+
+
     // filtering a site
     // double check name!
     @Query(value = 
@@ -56,4 +60,6 @@ public interface SiteRepository extends JpaRepository<Site, String> {
     @Query(value = "delete from Site Where Name=?1", nativeQuery = true)
     int deleteSite(@Param("Name") String Name);
 
+    @Query(value = "Select Name from Site", nativeQuery = true)
+    Collection<String> getSiteNames();
 }

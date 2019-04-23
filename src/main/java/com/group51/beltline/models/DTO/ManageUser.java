@@ -14,18 +14,23 @@ public class ManageUser {
     @Column(name="username")
     private String username;
 
-    @Column(name="COUNT(emailaddress)")
-    private int count;
+    @Column(name="userType")
+    private String userType;
+
+
+    @Column(name="number_of_emails")
+    private int number_of_emails;
 
     @Column(name="status")
     private String status;
 
     public ManageUser(){}
 
-    public ManageUser(String username, int count, String status) {
+    public ManageUser(String username, String userType, int number_of_emails, String status) {
         this.username = username;
-        this.count = count;
+        this.number_of_emails = number_of_emails;
         this.status = status;
+        this.userType = userType;
     }
 
     public String getStatus() {
@@ -36,15 +41,25 @@ public class ManageUser {
         this.status = status;
     }
 
-    public int getCount() {
-        return count;
-    }
 
-    public void setCount(int count) {
-        this.count = count;
-    }
 
     public String getUsername() {
         return username;
+    }
+
+    public int getNumber_of_emails() {
+        return number_of_emails;
+    }
+
+    public void setNumber_of_emails(int number_of_emails) {
+        this.number_of_emails = number_of_emails;
+    }
+
+    public String getUserType() {
+        return userType;
+    }
+
+    public void setUserType(String userType) {
+        this.userType = userType;
     }
 }

@@ -17,4 +17,6 @@ public interface VisitorRepository extends JpaRepository<Visitor, String> {
     @Query(value="INSERT INTO Visitor (Username) VALUES (?1)", nativeQuery = true)
     int addVisitor(@Param("username") String username);
 
+    @Query(value="Select COUNT(Username) from Visitor where Username=?1")
+    int isVisitor(@Param("username") String username);
 }

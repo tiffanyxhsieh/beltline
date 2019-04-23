@@ -62,11 +62,6 @@ public class UserController {
     }
 
 
-    @GetMapping(path="/screen18/filter")
-    public @ResponseBody
-    Collection<ManageUser> filterManagedUsers(@Param("username") String username, @Param("status") String status, @Param("type") String type){
-        return manageUserRepository.adminManageUserFilter(username, status, type);
-    }
 
 
     @GetMapping(path="/usernameExists")

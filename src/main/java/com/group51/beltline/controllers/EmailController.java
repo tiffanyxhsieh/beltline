@@ -4,6 +4,7 @@ import com.group51.beltline.models.Email;
 import com.group51.beltline.repository.AssignToRepository;
 import com.group51.beltline.repository.EmailRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -28,6 +29,14 @@ public class EmailController {
 
     }
 
+    @Modifying
+    @DeleteMapping(path="/emails")
+    public @ResponseBody
+    void deleteEmail(@Param("username") String username,
+                     @Param("email") String email){
+        emailRepository.deleteEmail(username, email);
+    }
+
     @Transactional
     @PostMapping(path="/emails")
     public @ResponseBody
@@ -39,7 +48,7 @@ public class EmailController {
     //gets all the Emails associated w/ a user
     @GetMapping(path="/userEmails")
     public @ResponseBody
-    Collection<Email> getAllUserEmails(@RequestHeader("username")String username){
+    Collection<String> getAllUserEmails(@RequestHeader("username")String username){
         return emailRepository.getAllUserEmails(username);
     }
 

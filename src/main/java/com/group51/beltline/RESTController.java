@@ -71,5 +71,20 @@ public class RESTController {
 
 
 
+    @Transactional
+    @PostMapping(path="/screen38/log")
+    public @ResponseBody
+    int logSiteVisit(@Param("username") String username,
+                     @Param("site_name") String site_name,
+                     @Param("date_log") String date_log) {
+        return userRepository.logVisit(username, site_name, date_log);
+    }
+
+
+//    @GetMapping(path="/screen38/log")
+//    public @ResponseBody
+//    int logExists(@Param("username") String username, @Param("site")){
+//        return userRepository.logVisit();
+//    }
 
 }

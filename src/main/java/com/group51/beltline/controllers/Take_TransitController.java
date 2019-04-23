@@ -21,11 +21,10 @@ public class Take_TransitController {
     Take_TransitRepository take_transitRepository;
 
 
-
     //TODO:FRONT END...must make default values
     @GetMapping(path="/screen15/filter")
     public @ResponseBody
-    take_transit1 getAlltake_transit(
+    Collection<take_transit> getAlltake_transit(
                                                 @Param(value="site") String site,
                                                 @Param(value="type") String type,
                                                 @Param(value="low") String low,
@@ -33,4 +32,7 @@ public class Take_TransitController {
         //TODO: FRONT END.....if low is empty, put "0", if high is empty, put "99999
         return take_transitRepository.filterTake_transitBy(site, type, low, high);
     }
+
+
+
 }
