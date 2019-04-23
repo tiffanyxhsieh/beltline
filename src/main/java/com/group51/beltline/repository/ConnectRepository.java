@@ -21,8 +21,8 @@ public interface ConnectRepository extends JpaRepository<Connect, String> {
      //delete a connect
      // need to test
      @Modifying 
-     @Query(value = "delete from Connect where SiteName=?1", nativeQuery = true)
-     int deleteConnects(@Param("SiteName") String SiteName);
+     @Query(value = "delete from Connect where Type=?1 AND Route=?2", nativeQuery = true)
+     int deleteConnects(@Param("Type") String type,@Param("Route") String route);
 
      // get connects by transit
      @Query(value = "SELECT * FROM Connect where Type=?1 AND Route=?2", nativeQuery = true)

@@ -60,8 +60,8 @@ public class Screen23Controller {
         @Transactional
         @DeleteMapping(path="/screen23/deleteConnects")
         public @ResponseBody
-        int deleteConnects(@Param("SiteName") String sitename){
-            return connectRepository.deleteConnects(sitename);
+        int deleteConnects(@Param("Type") String type,@Param("Route") String route){
+            return connectRepository.deleteConnects(type, route);
         }
 
         //update a Connect
