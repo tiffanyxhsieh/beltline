@@ -18,8 +18,8 @@ public interface EmailRepository extends JpaRepository<Email, String> {
     @Query(value="SELECT distinct * FROM Email", nativeQuery=true)
     Collection<Email> getAllEmails();
 
-    @Query(value="SELECT * FROM Email where Username=?1", nativeQuery = true)
-    Collection<Email> getAllUserEmails(@Param("username") String username);
+    @Query(value="Select EmailAddress from Email where Username=?1", nativeQuery = true)
+    Collection<String> getAllUserEmails(@Param("username") String username);
 
     @Modifying
     @Query(value = "insert into Email (Username, EmailAddress) VALUES (?1,?2)", nativeQuery=true)

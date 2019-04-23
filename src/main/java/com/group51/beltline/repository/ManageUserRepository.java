@@ -10,10 +10,8 @@ import java.util.Collection;
 
 public interface ManageUserRepository extends JpaRepository<ManageUser, String> {
 
-    @Query(value="select * from manage_user " +
-            "where ?1 IS NULL OR username like CONCAT(?1,'%') " +
-            "AND ?2 IS NULL OR usertype = ?2 " +
-            "AND ?3 IS NULL OR status = ?3", nativeQuery = true)
-    Collection<ManageUser> adminManageUserFilter(@Param("username") String username, @Param("status") String status, @Param("type") String type);
+    @Query(value="select * from manage_user where (?1 is NULL OR ?1='' OR username=?1) AND (?2 is null OR ?2='' OR status=?2) and (?3 is null OR ?3='' or usertype=?3)", nativeQuery = true)
+    Collection<ManageUser> manageUserFilter(@Param("username") String username, @Param("status") String status, @Param("usertype") String usertype);
+
 
 }

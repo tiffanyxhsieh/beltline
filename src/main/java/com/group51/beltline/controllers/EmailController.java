@@ -39,7 +39,7 @@ public class EmailController {
     //gets all the Emails associated w/ a user
     @GetMapping(path="/userEmails")
     public @ResponseBody
-    Collection<Email> getAllUserEmails(@RequestHeader("username")String username){
+    Collection<String> getAllUserEmails(@RequestHeader("username")String username){
         return emailRepository.getAllUserEmails(username);
     }
 

@@ -24,6 +24,19 @@ public class SiteController {
         return siteRepository.getAllSites();
     }
 
+    @GetMapping(path="/managerSite")
+    public @ResponseBody
+    Site getSiteOfManager(@Param("username")String username) {
+        return siteRepository.getSiteOfManager(username);
+    }
+
+    @GetMapping(path="/siteNames")
+    public @ResponseBody
+    Collection<String> getSiteNames() {
+        return siteRepository.getSiteNames();
+    }
+
+
     //Get site by name
     @GetMapping(path = "/site") // Map ONLY GET Requests
     public @ResponseBody

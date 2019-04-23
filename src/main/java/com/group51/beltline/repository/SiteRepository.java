@@ -14,6 +14,22 @@ public interface SiteRepository extends JpaRepository<Site, String> {
     @Query(value = "SELECT * FROM Site", nativeQuery = true)
     Collection<Site> getAllSites();
 
+
+    @Query(value="SELECT * FROM Site where Manager=?1", nativeQuery = true)
+    Site getSiteOfManager(@Param("username")String username);
+
+    // filtering a site
+    @Query(value = 
+            "SELECT * FROM Site where (?1 IS NULL OR Name like CONCAT('%',?1,'%')) AND (?2 IS NULL OR Zipcode=?2) AND (?3 IS NULL OR Address like CONCAT('%',?3,'%')) AND (?4 IS NULL OR OpenEveryday like CONCAT('%',?4,'%')) AND (?5 IS NULL OR Manager like CONCAT('%',?5,'%')) Order by Name"
+            // "SELECT * FROM Site" + 
+            // "where (?1 IS NULL OR Name = ?1)\n" +
+            // "AND (?2 IS NULL OR Zipcode =?2)\n" +
+            // "AND (?3 IS NULL OR Address =?3)\n" +
+            // "AND (?4 IS NULL OR OpenEveryday =?4)\n" +
+            // "AND (?5 IS NULL OR Manager=?5)"
+            ,nativeQuery = true)
+    Collection<Site> filter(@Param("Name") String Name, @Param("Zipcode") String zipcode, @Param("Address") String address, @Param("OpenEveryday") String openEveryday, @Param("Manager") String manager);
+
     // select site by name
     @Query(value = "SELECT * FROM Site WHERE Name=:name", nativeQuery = true)
     Site getSiteByName(@Param("name") String name);
@@ -33,4 +49,6 @@ public interface SiteRepository extends JpaRepository<Site, String> {
     @Query(value = "delete from Site Where Name=?1", nativeQuery = true)
     int deleteSite(@Param("Name") String Name);
 
+    @Query(value = "Select Name from Site", nativeQuery = true)
+    Collection<String> getSiteNames();
 }
