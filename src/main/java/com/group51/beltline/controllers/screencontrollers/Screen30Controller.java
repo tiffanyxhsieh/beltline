@@ -33,7 +33,7 @@ public class Screen30Controller {
     
    // select staff assigned to this event
     // tested
-    @GetMapping(path = "/screen26/getAssignedStaff")
+    @GetMapping(path = "/screen30/getAssignedStaff")
     public @ResponseBody
     Collection<StaffName> initByManager (@Param("eventname") String eventname, @Param("sitename") String sitename, @Param("startdate") String startdate){
         return staffNameRepository.getAssignedStaff(eventname, sitename, startdate);
