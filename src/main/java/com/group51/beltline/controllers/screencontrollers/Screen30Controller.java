@@ -1,4 +1,3 @@
-
 package com.group51.beltline.controllers.screencontrollers;
 
 import com.group51.beltline.models.*;
@@ -16,37 +15,30 @@ import java.util.List;
 // need to test
 @Controller
 @RequestMapping
-public class Screen32Controller {
+public class Screen30Controller {
 
     @Autowired
-    private EventRepository eventRepository;
+    private Daily_detailRepository daily_detailRepository;
 
-    @Autowired 
+    @Autowired
     private StaffNameRepository staffNameRepository;
 
-    //Get basic info of an event by key
-    // tested
-    @GetMapping(path = "/screen32/getBasicInfo") // Map ONLY GET Requests
+    // get daily_details (but did not include staff assigned)
+    
+    @GetMapping(path = "/screen30/getDailyDetail")
     public @ResponseBody
-    Event getEventByKey(@Param("name") String name, @Param("StartDate") String startdate, @Param("SiteName") String sitename){
-        return eventRepository.getEventByKey(name, startdate, sitename);
+    Collection<Daily_detail> initByManager(@Param("username") String username){
+        return daily_detailRepository.getDailyDetails(username);
     }
-
-    // get the duration for an event
-    //tested
-    @GetMapping(path = "/screen32/getDuration")
-    public @ResponseBody
-    int getDuration(@Param("name") String name, @Param("StartDate") String startdate, @Param("SiteName") String sitename){
-        return eventRepository.getEventDuration(name, startdate, sitename);
-    }
-
-    // get staffs assigned to an event
-    // select staff assigned to this event
+    
+   // select staff assigned to this event
     // tested
-    @GetMapping(path = "/screen32/getAssignedStaff")
+    @GetMapping(path = "/screen26/getAssignedStaff")
     public @ResponseBody
     Collection<StaffName> initByManager (@Param("eventname") String eventname, @Param("sitename") String sitename, @Param("startdate") String startdate){
         return staffNameRepository.getAssignedStaff(eventname, sitename, startdate);
     }
+
+
 
 }
