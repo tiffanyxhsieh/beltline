@@ -36,8 +36,8 @@ public class Screen28Controller {
     public @ResponseBody
     Collection<Manage_staff> initByManager(@Param("startdate") String startdate, 
     @Param("enddate") String enddate,
-    @Param("sitename") String sitename){
-        return manage_staffRepository.filter(startdate, enddate, sitename);
+    @Param("sitename") String sitename, @Param("firstname") String firstname, @Param("lastname") String lastname){
+        return manage_staffRepository.filter(startdate, enddate, sitename, firstname, lastname);
     }
 
     // @GetMapping(path = "/screen28/filter")
