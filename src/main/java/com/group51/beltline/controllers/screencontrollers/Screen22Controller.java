@@ -25,8 +25,8 @@ public class Screen22Controller {
     // tested
     @GetMapping(path = "/screen22/showTable")
     public @ResponseBody
-    Collection<Manage_transit> getAll(){
-        return manage_transitRepository.getAllManageTransit();
+    Collection<Manage_transit> getAll(@Param("type") String type, @Param("route") String route, @Param("sitename") String sitename, @Param("price_low") String price_low, @Param("price_high") String price_high){
+        return manage_transitRepository.getAllManageTransit(type, route, sitename, price_low, price_high);
     }
 
     //create a transit
