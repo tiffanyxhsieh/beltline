@@ -15,6 +15,10 @@ public interface SiteRepository extends JpaRepository<Site, String> {
     @Query(value = "SELECT * FROM Site", nativeQuery = true)
     Collection<Site> getAllSites();
 
+    //selects all sites for a manayer
+    @Query(value = "SELECT * FROM Site where manager=?1", nativeQuery = true)
+    Collection<Site> getAllSitesByManager(@Param("manager") String manager);
+
     //select all unassigned managers for sites
     // Select distinct Concat(firstname, ' ', lastname) from user where username in (SELECT distinct username from manager where username not in (SELECT distinct name FROM Manager as m JOIN site AS s ON m.username = s.manager))
     @Query(value = "Select distinct Concat(firstname, ' ', lastname) from user where username in (SELECT distinct username from manager where username not in (SELECT distinct username FROM Manager as m JOIN site AS s ON m.username = s.manager)) ", nativeQuery = true)

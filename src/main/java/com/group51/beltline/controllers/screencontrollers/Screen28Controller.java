@@ -20,7 +20,15 @@ public class Screen28Controller {
     @Autowired
     private Manage_staffRepository manage_staffRepository;
 
+    @Autowired
+    private SiteRepository siteRepository;
+
     //TODO: add getSItes by manager
+    @GetMapping(path = "/screen28/getSitesByManger")
+    public @ResponseBody
+    Collection<Site> getSitesByManger(@Param("manager") String manager){
+        return siteRepository.getAllSitesByManager(manager);
+    }
 
     // filter
     // tested
